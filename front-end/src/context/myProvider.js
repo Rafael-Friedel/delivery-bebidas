@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import myContext from './myContext';
 
 function MyProvider({ children }) {
-  // criar store
+  const [example, setExample] = useState([]);
+  const store = { example, setExample };
   return <myContext.Provider value={ store }>{children}</myContext.Provider>;
 }
 

@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import myContext from "../context/myContext";
 
 function FormRegister() {
   const navigate = useNavigate();
+  const { handleChange } = useContext(myContext);
 
   const [register, setRegister] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   });
-
-  const handleChange = ({ target }) => {
-    const { name, value } = target;
-    setRegister({ ...register, [name]: value });
-  };
 
   const buttonRegister = () => {
     // fetch de post passando o register como body
-    navigate('/login');
+    navigate("/login");
   };
 
   return (
@@ -26,37 +23,41 @@ function FormRegister() {
         Nome
         <input
           id="name"
-          data-testid="input-name"
-          onChange={ handleChange }
+          data-testid="common_register__input-name"
+          onChange={(e) => handleChange(e, register, setRegister)}
           name="name"
           placeholder="Seu nome"
-          value={ register.name }
+          value={register.name}
         />
       </label>
       <label htmlFor="email">
         E-mail
         <input
           id="email"
-          data-testid="input-email"
-          onChange={ handleChange }
+          data-testid="common_register__input-email"
+          onChange={(e) => handleChange(e, register, setRegister)}
           name="email"
           placeholder="Seu e-mail"
-          value={ register.email }
+          value={register.email}
         />
       </label>
       <label htmlFor="password">
         Senha
         <input
           id="password"
-          data-testid="input-password"
-          onChange={ handleChange }
+          data-testid="common_register__input-password"
+          onChange={(e) => handleChange(e, register, setRegister)}
           name="password"
           placeholder="Sua senha"
-          value={ register.password }
+          value={register.password}
           type="password"
         />
       </label>
-      <button type="button" onClick={ buttonRegister } data-testid="button-login">
+      <button
+        type="button"
+        onClick={buttonRegister}
+        data-testid="common_register__button-register"
+      >
         CADASTRAR
       </button>
     </form>

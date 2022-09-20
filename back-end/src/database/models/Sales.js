@@ -55,13 +55,13 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     timestamps: false,
-    sequelize: db,
+    // sequelize: db,
     modelName: 'Sales',
     underscored: true,
   });
 
   Sales.associate = (models) => {
-    Sales.hasMany(models.SalesProducts, { foreignKey: 'sale_id'});
+    Sales.hasMany(models.SalesProduct, { foreignKey: 'sale_id'});
 
     Sales.belongsTo(models.Users, { foreignKey: 'user_id'});
     Sales.belongsTo(models.Users, { foreignKey: 'seller_id'});

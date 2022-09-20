@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     timestamps: false,
-    sequelize: db,
+    // sequelize: db,
     modelName: 'Users',
     underscored: true,
   });

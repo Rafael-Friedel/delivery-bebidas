@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
-  const SalesProducts = sequelize.define('SalesProducts', {
+  const SalesProduct = sequelize.define('SalesProduct', {
     saleId: {
       primaryKey: true,
       allowNull: false,
       type: DataTypes.INTEGER,
       field: 'sale_id',
       references: {
-        model: 'SalesProducts',
+        model: 'Sales',
         key: 'id',
       },
       onDelete: 'CASCADE',
@@ -31,16 +31,30 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     timestamps: false,
-    sequelize: db,
+    // sequelize: db,
     modelName: 'SalesProducts',
     underscored: true,
   });
 
-  SalesProducts.associate = (models) => {
-    SalesProducts.belongsToMany(models.Sales, { foreignKey: 'sale_id'});
+  SalesProduct.associate = (models) => {
+    models.Sales.belongsToMany(models.Products, {
+      as: 'testando',
+      through: SalesProduct,
+      foreignKey: 'salesId',
+      otherKey: 'productId'
+    });
 
-    SalesProducts.belongsToMany(models.Products, { foreignKey: 'product_id'});
-  };
+  //SalesProduct.associate = (models) => {
+    models.Products.belongsToMany(models.Sales, {
+      as: 'adivinhando',
+      through: SalesProduct,
+      foreignKey: 'productId',
+      otherKey: 'saleId'
+    });
+  //}
+  }
+  return SalesProduct
+}
+    //SalesProducts.belongsToMany(models.Sales, { foreignKey: 'sale_id',});
 
-  return SalesProducts;
-};
+    //SalesProducts.belongsToMany(models.Products, { foreignKey: 'product_id'});

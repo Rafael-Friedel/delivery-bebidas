@@ -23,13 +23,13 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     timestamps: false,
-    sequelize: db,
+    // sequelize: db,
     modelName: 'Products',
     underscored: true,
   });
 
   Products.associate = (models) => {
-    Products.hasMany(models.SalesProducts,
+    Products.hasMany(models.SalesProduct,
       { foreignKey: 'product_id'});
   };
 

@@ -1,20 +1,20 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import myContext from "../context/myContext";
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import myContext from '../context/myContext';
 
 function FormRegister() {
   const navigate = useNavigate();
   const { handleChange } = useContext(myContext);
 
   const [register, setRegister] = useState({
-    name: "",
-    email: "",
-    password: "",
+    name: '',
+    email: '',
+    password: '',
   });
 
   const buttonRegister = () => {
     // fetch de post passando o register como body
-    navigate("/login");
+    navigate('/login');
   };
 
   return (
@@ -24,10 +24,10 @@ function FormRegister() {
         <input
           id="name"
           data-testid="common_register__input-name"
-          onChange={(e) => handleChange(e, register, setRegister)}
+          onChange={ (e) => handleChange(e, register, setRegister) }
           name="name"
           placeholder="Seu nome"
-          value={register.name}
+          value={ register.name }
         />
       </label>
       <label htmlFor="email">
@@ -35,10 +35,10 @@ function FormRegister() {
         <input
           id="email"
           data-testid="common_register__input-email"
-          onChange={(e) => handleChange(e, register, setRegister)}
+          onChange={ (e) => handleChange(e, register, setRegister) }
           name="email"
           placeholder="Seu e-mail"
-          value={register.email}
+          value={ register.email }
         />
       </label>
       <label htmlFor="password">
@@ -46,16 +46,16 @@ function FormRegister() {
         <input
           id="password"
           data-testid="common_register__input-password"
-          onChange={(e) => handleChange(e, register, setRegister)}
+          onChange={ (e) => handleChange(e, register, setRegister) }
           name="password"
           placeholder="Sua senha"
-          value={register.password}
+          value={ register.password }
           type="password"
         />
       </label>
       <button
         type="button"
-        onClick={buttonRegister}
+        onClick={ buttonRegister }
         data-testid="common_register__button-register"
       >
         CADASTRAR

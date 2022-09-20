@@ -1,19 +1,16 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import myContext from "../context/myContext";
 
 function FormLogin() {
   const navigate = useNavigate();
+  const { handleChange } = useContext(myContext);
   const [login, setLogin] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [isDisabled, setIsDisabled] = useState(true);
-
-  const handleChange = ({ target }) => {
-    const { name, value } = target;
-    setLogin({ ...login, [name]: value });
-  };
 
   const validEmail = (email) => /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(email);
 
@@ -26,7 +23,7 @@ function FormLogin() {
   }, [login]);
 
   const buttonLogin = () => {
-    navigate('/homepage');
+    navigate("/homepage");
   };
 
   return (
@@ -35,37 +32,37 @@ function FormLogin() {
         Login
         <input
           id="email"
-          data-testid="input-email"
-          onChange={ handleChange }
+          data-testid="common_login__input-email"
+          onChange={(e) => handleChange(e, login, setLogin)}
           name="email"
           placeholder="Seu e-mail"
-          value={ login.email }
+          value={login.email}
         />
       </label>
       <label htmlFor="password">
         Senha
         <input
           id="password"
-          data-testid="input-password"
-          onChange={ handleChange }
+          data-testid="common_login__input-password"
+          onChange={(e) => handleChange(e, login, setLogin)}
           name="password"
           placeholder="Sua senha"
-          value={ login.password }
+          value={login.password}
           type="password"
         />
       </label>
       <button
         type="button"
-        disabled={ isDisabled }
-        onClick={ buttonLogin }
-        data-testid="button-login"
+        disabled={isDisabled}
+        onClick={buttonLogin}
+        data-testid="common_login__button-login"
       >
         LOGIN
       </button>
       <button
         type="button"
-        onClick={ () => navigate('/register') }
-        data-testid="button-register"
+        onClick={() => navigate("/register")}
+        data-testid="common_login__button-register"
       >
         Ainda não tenho conta
       </button>

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import myContext from './myContext';
 
 function MyProvider({ children }) {
@@ -19,7 +19,9 @@ function MyProvider({ children }) {
     setAlertRegister,
   };
 
-  return <myContext.Provider value={ store }>{children}</myContext.Provider>;
+  const memoStore = useMemo(() => store);
+
+  return <myContext.Provider value={ memoStore }>{children}</myContext.Provider>;
 }
 
 MyProvider.propTypes = {

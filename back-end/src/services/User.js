@@ -4,7 +4,7 @@ const md5 = require('md5');
 
 const model = require('../database/models');
 
-const { throwNotExistError } = require('./utils');
+const { throwNotExistError, throwConflictError } = require('./utils');
 
 const authService = require('./authService');
 
@@ -25,15 +25,20 @@ const userService = {
     return token;
   },
 
-  /* create: async (object) => {
-    const [, created] = await model.User
-    .findOrCreate({ where: { email: object.email },
-    default: {
-      ...object,
-    } });
-    return created;
+  create: async (object) => {
+    const email = await model.User.findOne({ where: { email: object.email } });
+    const name = await model.User.findOne({ where: { name: object.name } });
+
+    if (email || name) {
+      return throwConflictError();
+    }
+
+    const encripetedPass = md5(object.password);
+
+    await model.User.create({ ...object, password: encripetedPass });
   },
 
+/*
   getAll: async () => {
     const user = await model.User.findAll({ 
       attributes: { 

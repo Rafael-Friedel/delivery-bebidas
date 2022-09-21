@@ -1,6 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import myContext from '../context/myContext';
+import validFormRegister from '../helpers/validFormRegister';
 
 function FormRegister() {
   const navigate = useNavigate();
@@ -16,6 +17,13 @@ function FormRegister() {
     // fetch de post passando o register como body
     navigate('/login');
   };
+
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  useEffect(() => {
+    const isDisab = validFormRegister(register);
+    setIsDisabled(isDisab);
+  }, [register]);
 
   return (
     <form>
@@ -57,6 +65,7 @@ function FormRegister() {
         type="button"
         onClick={ buttonRegister }
         data-testid="common_register__button-register"
+        disabled={ isDisabled }
       >
         CADASTRAR
       </button>

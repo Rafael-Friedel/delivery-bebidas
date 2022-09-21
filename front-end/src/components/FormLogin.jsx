@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import myContext from '../context/myContext';
+import validFormLogin from '../helpers/validFormLogin';
 
 function FormLogin() {
   const navigate = useNavigate();
@@ -12,13 +13,8 @@ function FormLogin() {
 
   const [isDisabled, setIsDisabled] = useState(true);
 
-  const validEmail = (email) => /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/.test(email);
-
   useEffect(() => {
-    const { email, password } = login;
-    const min = 6;
-    let isDisab = true;
-    if (password.length >= min && validEmail(email)) isDisab = false;
+    const isDisab = validFormLogin(login);
     setIsDisabled(isDisab);
   }, [login]);
 

@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Sales = sequelize.define('Sales', {
+  const Sale = sequelize.define('Sale', {
     id: {
       primaryKey: true,
       allowNull: false,
@@ -56,16 +56,16 @@ module.exports = (sequelize, DataTypes) => {
   {
     timestamps: false,
     // sequelize: db,
-    modelName: 'Sales',
+    tableName: 'Sales',
     underscored: true,
   });
 
-  Sales.associate = (models) => {
-    Sales.hasMany(models.SalesProduct, { foreignKey: 'sale_id'});
+  Sale.associate = (models) => {
+    Sale.hasMany(models.SalesProduct, { foreignKey: 'sale_id'});
 
-    Sales.belongsTo(models.Users, { foreignKey: 'user_id'});
-    Sales.belongsTo(models.Users, { foreignKey: 'seller_id'});
+    Sale.belongsTo(models.User, { foreignKey: 'user_id'});
+    Sale.belongsTo(models.User, { foreignKey: 'seller_id'});
   };
 
-  return Sales;
+  return Sale;
 };

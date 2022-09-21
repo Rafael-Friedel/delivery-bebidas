@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Products = sequelize.define('Products', {
+  const Product = sequelize.define('Product', {
     id: {
       autoIncrement: true,
       primaryKey: true,
@@ -24,14 +24,14 @@ module.exports = (sequelize, DataTypes) => {
   {
     timestamps: false,
     // sequelize: db,
-    modelName: 'Products',
+    tableName: 'Products',
     underscored: true,
   });
 
-  Products.associate = (models) => {
-    Products.hasMany(models.SalesProduct,
+  Product.associate = (models) => {
+    Product.hasMany(models.SalesProduct,
       { foreignKey: 'product_id'});
   };
 
-  return Products;
+  return Product;
 };

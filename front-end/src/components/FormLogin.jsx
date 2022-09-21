@@ -6,6 +6,7 @@ import validFormLogin from '../helpers/validFormLogin';
 function FormLogin() {
   const navigate = useNavigate();
   const { handleChange } = useContext(myContext);
+  // extrair do context setAlertLogin quando implementar logica do button login com o fetch.
   const [login, setLogin] = useState({
     email: '',
     password: '',
@@ -19,7 +20,11 @@ function FormLogin() {
   }, [login]);
 
   const buttonLogin = () => {
-    navigate('/homepage');
+    // fazer fetch de login passando o login como parametro
+    // fetch de login, se erro.
+    // if (response.message) setAlertLogin(true);
+    // fetch de login, se sucesso
+    navigate('/customer/products');
   };
 
   return (

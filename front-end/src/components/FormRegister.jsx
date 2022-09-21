@@ -6,7 +6,7 @@ import validFormRegister from '../helpers/validFormRegister';
 function FormRegister() {
   const navigate = useNavigate();
   const { handleChange } = useContext(myContext);
-
+  // extrair do context setAlertRegister quando implementar logica do button Register com o fetch.
   const [register, setRegister] = useState({
     name: '',
     email: '',
@@ -14,7 +14,10 @@ function FormRegister() {
   });
 
   const buttonRegister = () => {
-    // fetch de post passando o register como body
+    // fetch de post passando o register como pamametro
+    // fetch de register, se erro.
+    // if (response.message) setAlertRegister(true);
+    // se sucesso no fetch de register
     navigate('/login');
   };
 

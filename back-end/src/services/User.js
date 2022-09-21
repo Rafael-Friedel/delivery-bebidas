@@ -1,13 +1,28 @@
+// const crypto = require('crypto');
+// const bcrypt = require('bcrypt');
+const md5 = require('md5');
+
 const model = require('../database/models');
-const { throwInvalidFields } = require('./utils');
+
+const { throwNotExistError } = require('./utils');
+
+const authService = require('./authService');
 
 const userService = {
-  getByEmail: async (email) => {
-    const user = await model.Users.findOne({ where: { email } });
+  getByEmail: async (obj) => {
+    const user = await model.User.findOne({ where: { email: obj.email } });
     if (!user) {
-      return throwInvalidFields();
+      return throwNotExistError('Not found');
     }
-    return user;
+    
+    const descript = md5(obj.password);
+
+    if (descript !== user.password) {
+      return throwNotExistError('Not found');
+    }
+
+    const token = await authService.generateToken(user.email);
+    return token;
   },
 
   /* create: async (object) => {

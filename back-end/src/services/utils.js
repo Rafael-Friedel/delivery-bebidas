@@ -10,9 +10,9 @@ const throwUnauthorizedError = (message = 'Unauthorized user') => {
   throw err;
 };
 
-const throwAlreadyExistsError = (message = 'User already registered') => {
+const throwConflictError = (message = 'User already registered') => {
   const err = new Error(message);
-  err.name = 'AlreadyExistsError';
+  err.name = 'ConflictError';
   throw err;
 };
 
@@ -25,6 +25,6 @@ const throwInvalidFields = (message = 'Invalid fields') => {
 module.exports = {
   throwNotExistError,
   throwUnauthorizedError,
-  throwAlreadyExistsError,
+  throwConflictError,
   throwInvalidFields,
 };

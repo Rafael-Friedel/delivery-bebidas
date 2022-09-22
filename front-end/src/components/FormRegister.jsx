@@ -17,7 +17,7 @@ function FormRegister() {
     const response = await createUser(register);
     const statusSucess = 201;
     if (response.status !== statusSucess) setAlertRegister(true);
-    else navigate('/login');
+    else navigate('/customer/products');
   };
 
   const [isDisabled, setIsDisabled] = useState(true);

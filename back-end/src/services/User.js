@@ -33,15 +33,17 @@ const userService = {
 
   create: async (object, role = 'customer') => {    
     const email = await model.User.findOne({ where: { email: object.email } });
-    const name = await model.User.findOne({ where: { name: object.name } });
+    // const name = await model.User.findOne({ where: { name: object.name } });
 
-    if (email || name) {
+    if (email) {
       return throwConflictError();
     }
 
     const encripetedPass = md5(object.password);
 
-    await model.User.create({ ...object, role, password: encripetedPass });
+    const created = await model.User.create({ ...object, role, password: encripetedPass });
+
+    return created;
   },
 
 /*

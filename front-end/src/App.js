@@ -5,6 +5,7 @@ import {
   Routes,
 } from 'react-router-dom';
 import MyProvider from './context/myProvider';
+import Checkout from './pages/Checkout';
 import DetailsProducts from './pages/DetailsProducts';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -17,7 +18,7 @@ function App() {
           <Route path="" element={ <Navigate to="/login" replace /> } />
           <Route path="login" element={ <Login /> } />
           <Route path="register" element={ <Register /> } />
-          {/* <Route path="/customer/checkout" element={ <Checkout /> } /> */}
+          <Route path="/customer/checkout" element={ <Checkout /> } />
           <Route path="customer/orders/:id" element={ <DetailsProducts /> } />
         </Routes>
       </MyProvider>

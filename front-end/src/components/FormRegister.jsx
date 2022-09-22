@@ -1,29 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import myContext from '../context/myContext';
+import createUser from '../fetchs/createUser';
 import validFormRegister from '../helpers/validFormRegister';
 
 function FormRegister() {
   const navigate = useNavigate();
-  const { handleChange } = useContext(myContext);
-  // extrair do context setAlertRegister quando implementar logica do button Register com o fetch.
+  const { handleChange, setAlertRegister } = useContext(myContext);
   const [register, setRegister] = useState({
     name: '',
     email: '',
     password: '',
   });
 
-  const buttonRegister = () => {
-    // fetch de post passando o register como pamametro
-    // fetch de register, se erro.
-    // if (response.message) setAlertRegister(true);
-    // se sucesso no fetch de register
-    navigate('/login');
+  const buttonRegister = async () => {
+    const response = await createUser(register);
+    const statusSucess = 201;
+    if (response.status !== statusSucess) setAlertRegister(true);
+    else navigate('/login');
   };
 
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
+    setAlertRegister(false);
     const isDisab = validFormRegister(register);
     setIsDisabled(isDisab);
   }, [register]);

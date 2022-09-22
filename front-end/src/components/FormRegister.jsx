@@ -29,7 +29,7 @@ function FormRegister() {
   }, [register]);
 
   return (
-    <form>
+    <form className="flex-grow w-full mt-8">
       <label htmlFor="name">
         Nome
         <input
@@ -39,6 +39,8 @@ function FormRegister() {
           name="name"
           placeholder="Seu nome"
           value={ register.name }
+          className={ `flex-1 w-full text-gray-700 bg-gray-200 rounded-md 
+        hover:bg-white border border-gray-200 outline-none focus:bg-white py-2 px-4 m-2` }
         />
       </label>
       <label htmlFor="email">
@@ -50,6 +52,8 @@ function FormRegister() {
           name="email"
           placeholder="Seu e-mail"
           value={ register.email }
+          className={ `flex-1 w-full text-gray-700 bg-gray-200 rounded-md 
+        hover:bg-white border border-gray-200 outline-none focus:bg-white py-2 px-4 m-2` }
         />
       </label>
       <label htmlFor="password">
@@ -62,16 +66,23 @@ function FormRegister() {
           placeholder="Sua senha"
           value={ register.password }
           type="password"
+          className={ `flex-1 w-full text-gray-700 bg-gray-200 rounded-md 
+        hover:bg-white border border-gray-200 
+        outline-none focus:bg-white py-2 px-4 m-2 mb-4` }
         />
       </label>
-      <button
-        type="button"
-        onClick={ buttonRegister }
-        data-testid="common_register__button-register"
-        disabled={ isDisabled }
-      >
-        CADASTRAR
-      </button>
+      <section className="text-center">
+        <button
+          type="button"
+          onClick={ buttonRegister }
+          data-testid="common_register__button-register"
+          disabled={ isDisabled }
+          className={ `bg-teal-500 hover:bg-teal-600 outline-none py-2 
+        px-4 ml-4 text-white font-semibold rounded-md text-center` }
+        >
+          CADASTRAR
+        </button>
+      </section>
     </form>
   );
 }

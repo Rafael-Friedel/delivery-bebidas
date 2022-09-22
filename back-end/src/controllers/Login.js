@@ -1,9 +1,9 @@
 const userService = require('../services/User');
 
 const loginController = async (req, res) => {  
-  const token = await userService.getByEmail(req.body);
+  const userWithToken = await userService.getByEmail(req.body);
   
-  return res.status(200).json({ token });
+  return res.status(200).json(userWithToken);
 };
 
 module.exports = loginController;

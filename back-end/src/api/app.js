@@ -5,6 +5,7 @@ const cors = require('cors');
 const registerRoute = require('../routes/register');
 const ProductsRoute = require('../routes/products');
 const LoginRoute = require('../routes/login');
+const SalesRoute = require('../routes/sales');
 
 const errorHandlerMiddleware = require('../middlewares/errorHandlerMiddleware');
 
@@ -17,6 +18,7 @@ app.use('/images', express.static('images/public'));
 app.use('/register', registerRoute);
 app.use('/products', ProductsRoute);
 app.use('/login', LoginRoute);
+app.use('/sales', SalesRoute);
 
 app.use(errorHandlerMiddleware);
 

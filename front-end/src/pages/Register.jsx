@@ -3,7 +3,7 @@ import FormRegister from '../components/FormRegister';
 import myContext from '../context/myContext';
 
 function Register() {
-  const { alertRegister, setAlertRegister } = useContext(myContext);
+  const { alertRegister } = useContext(myContext);
   return (
     <section>
       <h2>Cadastro</h2>
@@ -13,9 +13,6 @@ function Register() {
           Mensagem que vem do Back-End ex: invalidFields
         </p>
       )}
-      <button type="button" onClick={ () => setAlertRegister(!alertRegister) }>
-        Teste
-      </button>
     </section>
   );
 }

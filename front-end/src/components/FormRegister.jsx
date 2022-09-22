@@ -16,7 +16,7 @@ function FormRegister() {
   const buttonRegister = async () => {
     const response = await createUser(register);
     const statusSucess = 201;
-    if (response !== statusSucess) setAlertRegister(true);
+    if (response.status !== statusSucess) setAlertRegister(true);
     else navigate('/login');
   };
 

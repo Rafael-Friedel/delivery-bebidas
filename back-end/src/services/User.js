@@ -25,8 +25,7 @@ const userService = {
     return token;
   },
 
-  create: async (object, role = 'customer') => {
-
+  create: async (object, role = 'customer') => {    
     const email = await model.User.findOne({ where: { email: object.email } });
     const name = await model.User.findOne({ where: { name: object.name } });
 

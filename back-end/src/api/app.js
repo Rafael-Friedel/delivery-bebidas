@@ -3,8 +3,9 @@ require('express-async-errors');
 
 const cors = require('cors');
 const registerRoute = require('../routes/register');
+const ProductsRoute = require('../routes/products');
+const LoginRoute = require('../routes/login');
 
-const router = require('../routes');
 const errorHandlerMiddleware = require('../middlewares/errorHandlerMiddleware');
 
 const app = express();
@@ -12,9 +13,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/coffee', (_req, res) => res.status(418).end());
-app.use(registerRoute);
-app.use(router);
+app.use('/register', registerRoute);
+app.use('/products', ProductsRoute);
+app.use('/login', LoginRoute);
+
 app.use(errorHandlerMiddleware);
 
 module.exports = app;

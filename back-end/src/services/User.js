@@ -20,7 +20,15 @@ const userService = {
     }
 
     const token = await authService.generateToken(user.email);
-    return token;
+
+    const userToReturn = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      token,      
+    };
+    
+    return userToReturn;
   },
 
   create: async (object, role = 'customer') => {    

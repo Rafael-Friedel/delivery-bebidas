@@ -1,5 +1,3 @@
-// const crypto = require('crypto');
-// const bcrypt = require('bcrypt');
 const md5 = require('md5');
 
 const model = require('../database/models');

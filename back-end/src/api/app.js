@@ -13,6 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+app.use('/images', express.static('images/public'));
 app.use('/register', registerRoute);
 app.use('/products', ProductsRoute);
 app.use('/login', LoginRoute);

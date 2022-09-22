@@ -2,7 +2,7 @@ import React from 'react';
 
 function TableDetailsProducts() {
   return (
-    <table className="w-full">
+    <table className="w-full shadow-xl">
       <thead className="bg-gray-200 border-b-2 border-gray-200">
         <tr>
           <th className="w-12 p-3 text-sm font-semibold tracking-wide text-left">

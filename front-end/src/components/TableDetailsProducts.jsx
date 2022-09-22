@@ -1,6 +1,6 @@
 import React from 'react';
 
-function DetailsProductsCheckout() {
+function TableDetailsProducts() {
   return (
     <table className="w-full">
       <thead className="bg-gray-200 border-b-2 border-gray-200">
@@ -102,4 +102,4 @@ function DetailsProductsCheckout() {
   );
 }
 
-export default DetailsProductsCheckout;
+export default TableDetailsProducts;

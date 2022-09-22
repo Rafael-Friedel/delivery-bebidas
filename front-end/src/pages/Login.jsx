@@ -4,7 +4,7 @@ import Logo from '../components/Logo';
 import myContext from '../context/myContext';
 
 function Login() {
-  const { alertLogin, setAlertLogin } = useContext(myContext);
+  const { alertLogin } = useContext(myContext);
 
   return (
     <section className="bg-indigo-100">
@@ -35,9 +35,6 @@ function Login() {
                 corretos e tente novamente
               </p>
             )}
-            <button type="button" onClick={ () => setAlertLogin(!alertLogin) }>
-              Teste
-            </button>
           </section>
         </section>
       </section>

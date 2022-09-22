@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import myContext from '../context/myContext';
+import loginUser from '../fetchs/loginUser';
 import validFormLogin from '../helpers/validFormLogin';
 
 function FormLogin() {
   const navigate = useNavigate();
-  const { handleChange } = useContext(myContext);
-  // extrair do context setAlertLogin quando implementar logica do button login com o fetch.
+  const { handleChange, setAlertLogin } = useContext(myContext);
   const [login, setLogin] = useState({
     email: '',
     password: '',
@@ -19,12 +19,10 @@ function FormLogin() {
     setIsDisabled(isDisab);
   }, [login]);
 
-  const buttonLogin = () => {
-    // fazer fetch de login passando o login como parametro
-    // fetch de login, se erro.
-    // if (response.message) setAlertLogin(true);
-    // fetch de login, se sucesso
-    navigate('/customer/products');
+  const buttonLogin = async () => {
+    const response = await loginUser(login);
+    if (response.message) setAlertLogin(true);
+    else navigate('/customer/products');
   };
 
   return (

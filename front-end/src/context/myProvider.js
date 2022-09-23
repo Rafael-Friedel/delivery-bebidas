@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useMemo, useState } from 'react';
 import myContext from './myContext';
+import productsList from '../fetchs/products';
 
 function MyProvider({ children }) {
   const handleChange = ({ target }, state, setState) => {
@@ -10,16 +11,20 @@ function MyProvider({ children }) {
 
   const [alertLogin, setAlertLogin] = useState(false);
   const [alertRegister, setAlertRegister] = useState(false);
-  const [products, setProducts] = useState();
+  const [products, setProducts] = useState([]);
   const [cart, setCart] = useState();
 
   const getProducts = async () => {
-    const productsAPI = ['item1', 'item2', 'item3'];
+    const productsAPI = await productsList();
     setProducts(productsAPI);
   };
 
-  const cartProducts = async (productsAdd) => {
-    setCart(...products, productsAdd);
+  const addProducts = async () => (add) => {
+    setCart(add);
+  };
+
+  const removeProducts = async (remove) => {
+    setCart(remove);
   };
 
   const store = {
@@ -31,7 +36,8 @@ function MyProvider({ children }) {
     products,
     getProducts,
     cart,
-    cartProducts,
+    addProducts,
+    removeProducts,
   };
 
   const memoStore = useMemo(() => store);

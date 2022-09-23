@@ -42,8 +42,10 @@ const userService = {
     const encripetedPass = md5(object.password);
 
     const created = await model.User.create({ ...object, role, password: encripetedPass });
+    const user = await model.User.findOne({ where: { email: created.email }, 
+      attributes: { exclude: ['password'] } });
 
-    return created;
+    return user;
   },
 
 /*

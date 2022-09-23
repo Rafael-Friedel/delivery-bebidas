@@ -6,9 +6,11 @@ async function register(req, res) {
 
   const user = await userService.create(userData);
 
-  const token = await generateToken(user.email)
+  const token = await generateToken(user.email);
 
-  res.status(201).json({ token });
+  const userToReturn = { ...user.dataValues, token };
+
+  res.status(201).json(userToReturn);
 }
 
 module.exports = register;

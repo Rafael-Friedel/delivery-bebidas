@@ -10,6 +10,17 @@ function MyProvider({ children }) {
 
   const [alertLogin, setAlertLogin] = useState(false);
   const [alertRegister, setAlertRegister] = useState(false);
+  const [products, setProducts] = useState();
+  const [cart, setCart] = useState();
+
+  const getProducts = async () => {
+    const productsAPI = ['item1', 'item2', 'item3'];
+    setProducts(productsAPI);
+  };
+
+  const cartProducts = async (productsAdd) => {
+    setCart(...products, productsAdd);
+  };
 
   const store = {
     handleChange,
@@ -17,6 +28,10 @@ function MyProvider({ children }) {
     setAlertLogin,
     alertRegister,
     setAlertRegister,
+    products,
+    getProducts,
+    cart,
+    cartProducts,
   };
 
   const memoStore = useMemo(() => store);

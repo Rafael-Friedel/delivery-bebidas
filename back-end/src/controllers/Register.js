@@ -1,11 +1,14 @@
+const { generateToken } = require('../services/authService');
 const userService = require('../services/User');
 
 async function register(req, res) {
   const userData = req.body;
 
-  await userService.create(userData);
+  const user = await userService.create(userData);
 
-  res.status(201).json({ message: 'Created' });
+  const token = await generateToken(user.email)
+
+  res.status(201).json({ token });
 }
 
 module.exports = register;

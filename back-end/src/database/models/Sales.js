@@ -1,3 +1,5 @@
+const { DATE } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
   const Sale = sequelize.define('Sale', {
     id: {
@@ -46,7 +48,8 @@ module.exports = (sequelize, DataTypes) => {
     saleDate: {
       allowNull: false,
       type: DataTypes.DATE,
-      field: 'sale_date'
+      field: 'sale_date',
+      defaultValue: DataTypes.NOW
     },
     status: {
       allowNull: false,

@@ -1,5 +1,3 @@
-// const crypto = require('crypto');
-// const bcrypt = require('bcrypt');
 const md5 = require('md5');
 
 const model = require('../database/models');
@@ -22,20 +20,30 @@ const userService = {
     }
 
     const token = await authService.generateToken(user.email);
-    return token;
+
+    const userToReturn = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+      token,      
+    };
+    
+    return userToReturn;
   },
 
-  create: async (object) => {
+  create: async (object, role = 'customer') => {    
     const email = await model.User.findOne({ where: { email: object.email } });
-    const name = await model.User.findOne({ where: { name: object.name } });
+    // const name = await model.User.findOne({ where: { name: object.name } });
 
-    if (email || name) {
+    if (email) {
       return throwConflictError();
     }
 
     const encripetedPass = md5(object.password);
 
-    await model.User.create({ ...object, password: encripetedPass });
+    const created = await model.User.create({ ...object, role, password: encripetedPass });
+
+    return created;
   },
 
 /*

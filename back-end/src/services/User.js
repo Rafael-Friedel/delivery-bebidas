@@ -48,7 +48,6 @@ const userService = {
     return user;
   },
 
-/*
   getAll: async () => {
     const user = await model.User.findAll({ 
       attributes: { 
@@ -57,7 +56,17 @@ const userService = {
     });
     return user;
   },
-  getById: async (id) => {
+
+  getAllSellers: async () => {
+    const sellers = await model.User.findAll({ where: { role: 'seller' }, 
+      attributes: { 
+        exclude: ['password'], 
+      }, 
+    });
+    return sellers;
+  },
+  
+  /* getById: async (id) => {
     const user = await model.User
     .findOne({ where: { id }, attributes: { exclude: ['password'] } });    
     return user;

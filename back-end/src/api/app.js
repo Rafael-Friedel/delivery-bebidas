@@ -6,6 +6,7 @@ const registerRoute = require('../routes/register');
 const ProductsRoute = require('../routes/products');
 const LoginRoute = require('../routes/login');
 const SalesRoute = require('../routes/sales');
+const UserRoute = require('../routes/users');
 
 const errorHandlerMiddleware = require('../middlewares/errorHandlerMiddleware');
 
@@ -19,6 +20,7 @@ app.use('/register', registerRoute);
 app.use('/products', ProductsRoute);
 app.use('/login', LoginRoute);
 app.use('/sales', SalesRoute);
+app.use('/users', UserRoute);
 
 app.use(errorHandlerMiddleware);
 

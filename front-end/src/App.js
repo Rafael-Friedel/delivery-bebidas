@@ -7,6 +7,7 @@ import {
 import MyProvider from './context/myProvider';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Products from './pages/Products';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={ <Navigate to="/login" replace /> } />
           <Route path="/login" element={ <Login /> } />
           <Route path="/register" element={ <Register /> } />
+          <Route path="/customer/products" element={ <Products /> } />
         </Routes>
       </MyProvider>
     </Router>

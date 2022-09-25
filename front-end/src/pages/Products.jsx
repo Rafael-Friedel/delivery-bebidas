@@ -2,22 +2,24 @@ import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import myContext from '../context/myContext';
 import HeaderClient from '../components/HeaderClient';
+import { getCartProducts } from '../services/localStorage';
 
 export default function Products() {
   const navigate = useNavigate();
   const { products, getProducts,
-    removeProducts, addProducts } = useContext(myContext);
+    removeProduct, addProduct } = useContext(myContext);
+
+  const totalCart = getCartProducts();
 
   const addProductToCart = async (product) => {
-    addProducts(product);
+    addProduct(product);
   };
 
   const removeProductFromCart = async (product) => {
-    removeProducts(product);
+    removeProduct(product);
   };
 
   useEffect(() => {
-    // Products da API
     getProducts();
   }, []);
 
@@ -35,7 +37,7 @@ export default function Products() {
             <span
               data-testid={ `customer_products__element-card-price-${product.id}` }
             >
-              { product.price }
+              { product.price.replace('.', ',') }
             </span>
             <img
               src={ product.urlImage }
@@ -53,6 +55,7 @@ export default function Products() {
             <input
               type="text"
               data-testid={ `customer_products__input-card-quantity-${product.id}` }
+              value={ totalCart.filter((item) => item.name === product.name).length }
             />
             <button
               type="button"
@@ -69,7 +72,8 @@ export default function Products() {
         data-testid="customer_products__checkout-bottom-value"
         onClick={ () => navigate('/customer/checkout') }
       >
-        Ver Carrinho: R$ 0
+        { totalCart.reduce((acc, item) => acc + Number(item.price), 0)
+          .toFixed(2).replace('.', ',')}
       </button>
     </>
   );

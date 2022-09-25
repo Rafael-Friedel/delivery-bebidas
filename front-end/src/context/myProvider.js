@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useMemo, useState } from 'react';
 import myContext from './myContext';
 import productsList from '../fetchs/products';
+import { setCartProducts } from '../services/localStorage';
 
 function MyProvider({ children }) {
   const handleChange = ({ target }, state, setState) => {
@@ -12,19 +13,29 @@ function MyProvider({ children }) {
   const [alertLogin, setAlertLogin] = useState(false);
   const [alertRegister, setAlertRegister] = useState(false);
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState();
+  const [cart, setCart] = useState([]);
 
   const getProducts = async () => {
     const productsAPI = await productsList();
     setProducts(productsAPI);
   };
 
-  const addProducts = async () => (add) => {
-    setCart(add);
+  const addProduct = async (newProduct) => {
+    const newCartState = [...cart, newProduct];
+    setCartProducts(newCartState);
+
+    setCart(newCartState);
   };
 
-  const removeProducts = async (remove) => {
-    setCart(remove);
+  const removeProduct = async (removedProduct) => {
+    const REMOVE_LAST_PRODUCT = -1;
+    const filteredProducts = cart
+      .filter((item) => item.id === removedProduct.id).slice(0, REMOVE_LAST_PRODUCT);
+    const cartItems = cart.filter((item) => item.id !== removedProduct.id);
+    const newCartState = [...filteredProducts, ...cartItems];
+    setCartProducts(newCartState);
+
+    setCart(newCartState);
   };
 
   const store = {
@@ -36,8 +47,9 @@ function MyProvider({ children }) {
     products,
     getProducts,
     cart,
-    addProducts,
-    removeProducts,
+    setCart,
+    addProduct,
+    removeProduct,
   };
 
   const memoStore = useMemo(() => store);

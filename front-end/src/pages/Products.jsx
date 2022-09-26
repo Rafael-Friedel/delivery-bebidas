@@ -20,9 +20,7 @@ export default function Products() {
   };
 
   const onChangeInput = async (product, value) => {
-    for (let index = 0; index < value; index += 1) {
-      addProduct(product);
-    }
+    // a
   };
 
   useEffect(() => {
@@ -59,10 +57,10 @@ export default function Products() {
               +
             </button>
             <input
-              type="number"
+              type="text"
               data-testid={ `customer_products__input-card-quantity-${product.id}` }
-              // value={ totalCart.filter((item) => item.name === product.name).length }
-              onChange={ (e) => onChangeInput(product, e.target.value) }
+              value={ totalCart.filter((item) => item.name === product.name).length }
+              // onChange={ (e) => onChangeInput(product, e.target.value) }
             />
             <button
               type="button"

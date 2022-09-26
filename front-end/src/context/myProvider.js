@@ -22,19 +22,15 @@ function MyProvider({ children }) {
 
   const addProduct = async (newProduct) => {
     const newCartState = [...cart, newProduct];
-    setCartProducts(newCartState);
 
+    setCartProducts(newCartState);
     setCart(newCartState);
   };
 
   const removeProduct = async (removedProduct) => {
-    const REMOVE_LAST_PRODUCT = -1;
-    const filteredProducts = cart
-      .filter((item) => item.id === removedProduct.id).slice(0, REMOVE_LAST_PRODUCT);
-    const cartItems = cart.filter((item) => item.id !== removedProduct.id);
-    const newCartState = [...filteredProducts, ...cartItems];
-    setCartProducts(newCartState);
+    const newCartState = cart.filter((item) => item.id !== removedProduct.id);
 
+    setCartProducts(newCartState);
     setCart(newCartState);
   };
 

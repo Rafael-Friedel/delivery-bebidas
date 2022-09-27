@@ -8,7 +8,7 @@ function TableDetailsProducts() {
           <th className="w-12 p-3 text-sm font-semibold tracking-wide text-left">
             Item
           </th>
-          <th className="p-3 text-sm font-semibold tracking-wide text-left text-center">
+          <th className="p-3 text-sm font-semibold tracking-wide text-center">
             Descrição
           </th>
           <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">

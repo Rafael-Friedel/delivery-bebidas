@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import myContext from '../context/myContext';
-import { removeProducts } from '../services/localStorageCartProducts';
+import {
+  readProducts,
+  removeProducts,
+} from '../services/localStorageCartProducts';
 import TheadDetailsProductsCheckout from './TheadDetailsProductsCheckout';
 
 function TableDetailsProductsCheckout() {
@@ -11,11 +14,12 @@ function TableDetailsProductsCheckout() {
     removeProducts(product);
   };
 
+  const myProducts = readProducts();
   return (
     <table className="w-full shadow-xl">
       <TheadDetailsProductsCheckout />
       <tbody className="bg-gray-50 border-b-2 border-gray-200">
-        {cart.map((p, index) => (
+        {myProducts.map((p, index) => (
           <tr key={ index }>
             <td
               className="p-3 text-sm text-gray-700 hover:bg-blue-400"
@@ -72,7 +76,7 @@ function TableDetailsProductsCheckout() {
     hover:text-white hover:bg-red-600` }
           data-testid="customer_checkout__element-order-total-price"
         >
-          {`Total: R$ ${cart
+          {`Total: R$ ${myProducts
             .reduce((acc, curr) => acc + curr.total, 0)
             .toFixed(2)
             .replace('.', ',')}`}

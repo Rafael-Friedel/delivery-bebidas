@@ -1,4 +1,4 @@
-const KEY = 'cart_products';
+const KEY = 'cart';
 
 export const readProducts = () => JSON.parse(localStorage.getItem(KEY));
 

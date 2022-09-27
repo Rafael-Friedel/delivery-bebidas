@@ -41,14 +41,14 @@ function TableDetailsProductsCheckout() {
               data-testid={ `customer_checkout__
                 element-order-table-unit-price-${index}` }
             >
-              {`R$ ${p.price}`}
+              {`R$ ${Number(p.price).toFixed(2).replace('.', ',')}`}
             </td>
             <td
               className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
               data-testid={ `customer_checkout__element-
                 order-table-sub-total-${index}` }
             >
-              {`R$${p.total}`}
+              {`R$ ${Number(p.total).toFixed(2).replace('.', ',')}`}
             </td>
             <td
               className={ `p-3 text-sm text-gray-700 text-center 

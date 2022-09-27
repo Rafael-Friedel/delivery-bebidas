@@ -112,6 +112,23 @@
 	}
 ]
 ```
+### PUT `/:id`
+> este é o saleId
+
+#### Entrada:
+```json
+{
+	"status": "string com status" // Possíveis status: Preparando, Em Trânsito ou Entregue
+}
+```
+
+#### Saída:
+
+```json
+{
+	"message": "Status updated"
+}
+```
 
 ## `/login`
 

@@ -57,6 +57,12 @@ const salesService = {
 
     return customerOrder;
   },
+
+  updateStatus: async(id, newStatus) => {
+    const updatedSale = await model.Sale.update({ status: newStatus }, {where: { id }})
+
+    return updatedSale
+  }
 };
 
 //   "userId": 3,

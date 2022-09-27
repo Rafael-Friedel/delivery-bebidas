@@ -1,6 +1,8 @@
 const { readToken } = require('../services/authService');
 const salesService = require('../services/Sales');
-const { throwNotExistError } = require('../services/utils');
+const { throwNotExistError, throwInvalidFields } = require('../services/utils');
+
+const possibleStatus = ['Preparando', 'Em Trânsito', 'Entregue'];
 
 const salesController = {
   create: async (req, res) => {
@@ -38,6 +40,23 @@ const salesController = {
 
     return res.status(200).json(customerOrder);
   },
+
+  updateSale: async(req, res) => {
+    const { id } = req.params
+    const { status } = req.body
+
+    if(!status) return throwNotExistError('You need to provide a status');    
+
+    const isPossible = possibleStatus.some((element) => status === element);
+
+    if(!isPossible) return throwInvalidFields('Invalid Status to update');    
+
+    const updatedStatus = await salesService.updateStatus(id, status);
+    
+    if(!updatedStatus) return throwInvalidFields();
+
+    return res.status(200).json({message: 'Status updated'});
+  }
 };
 
 module.exports = salesController;

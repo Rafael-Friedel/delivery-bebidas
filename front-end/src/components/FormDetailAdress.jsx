@@ -19,7 +19,7 @@ function FormDetailAdress() {
 
   const [alert, setAlert] = useState(false);
 
-  const finalizeOrder = async (id) => {
+  const finalizeOrder = async () => {
     const sale = {
       userId: userData.id,
       sellerId: +formSale.salesPerson,
@@ -33,7 +33,7 @@ function FormDetailAdress() {
     };
     const response = await registerSale(sale, userData.token);
     if (response.message) setAlert(true);
-    else navigate(`/customer/orders/${id}`);
+    else navigate(`/customer/orders/${response.id}`);
   };
 
   const getNameSellers = async () => {
@@ -105,7 +105,7 @@ function FormDetailAdress() {
           className={ `bg-teal-500 hover:bg-teal-600 outline-none py-2 
         px-4 ml-4 text-white font-semibold rounded-md text-center` }
           data-testid="customer_checkout__button-submit-order"
-          onClick={ () => finalizeOrder(1) }
+          onClick={ finalizeOrder }
         >
           Finalizar Pedido
         </button>

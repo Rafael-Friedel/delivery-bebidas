@@ -4,15 +4,14 @@ import myContext from '../context/myContext';
 
 export default function Products(props) {
   const { product } = props;
-  const { removeProduct, addProduct } = useContext(myContext);
+  const { addProduct } = useContext(myContext);
   const [quantity, setValue] = useState(0);
 
   useEffect(() => {
-    removeProduct(product);
-    for (let index = 0; index < quantity; index += 1) {
-      console.log(product.name);
-      addProduct(product);
+    async function handleChange() {
+      addProduct({ ...product, quantity, total: 0 });
     }
+    handleChange();
   }, [quantity]);
 
   return (

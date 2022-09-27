@@ -20,16 +20,26 @@ function MyProvider({ children }) {
     setProducts(productsAPI);
   };
 
-  const addProduct = async (newProduct) => {
-    const newCartState = [...cart, newProduct];
-
-    setCartProducts(newCartState);
-    setCart(newCartState);
+  const addProduct = (newProduct) => {
+    const filterItem = cart.find((item) => item.id === newProduct.id);
+    if (filterItem) {
+      const addQty = cart.map((item) => {
+        if (item.id === newProduct.id) {
+          item.quantity = newProduct.quantity;
+          item.total = Number(newProduct.quantity) * Number(item.price);
+        }
+        return item;
+      });
+      setCart(addQty);
+    } else {
+      const newCartState = [...cart, newProduct];
+      setCart(newCartState);
+    }
+    setCartProducts(cart);
   };
 
   const removeProduct = async (removedProduct) => {
     const newCartState = cart.filter((item) => item.id !== removedProduct.id);
-
     setCartProducts(newCartState);
     setCart(newCartState);
   };

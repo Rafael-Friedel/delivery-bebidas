@@ -7,6 +7,6 @@ const SalesRoute = express.Router();
 SalesRoute.post('/', salesController.create);
 SalesRoute.get('/:id', salesController.findById); // fazer innerJoin Sequelize
 SalesRoute.get('/orders/:sellerId', salesController.findBySellerId);
-SalesRoute.put('/:id', salesController.updateSale)
+SalesRoute.put('/:id', salesController.updateSale);
 
 module.exports = SalesRoute;

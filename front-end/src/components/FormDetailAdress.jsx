@@ -1,11 +1,13 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import myContext from '../context/myContext';
+import listSellers from '../fetchs/listSellers';
+import registerSale from '../fetchs/registerSale';
 
 function FormDetailAdress() {
   const navigate = useNavigate();
 
-  const { handleChange } = useContext(myContext);
+  const { handleChange, cart, userData } = useContext(myContext);
 
   const [formSale, setFormSale] = useState({
     salesPerson: 'select',
@@ -13,16 +15,41 @@ function FormDetailAdress() {
     number: '',
   });
 
-  console.log(formSale);
+  const [sellers, setSellers] = useState([]);
 
-  const finalizeOrder = (id) => {
-    navigate(`/customer/orders/${id}`);
+  const [alert, setAlert] = useState(false);
+
+  const finalizeOrder = async (id) => {
+    const sale = {
+      userId: userData.id,
+      sellerId: +formSale.salesPerson,
+      totalPrice: +cart.reduce((acc, curr) => acc + curr.total, 0).toFixed(2),
+      deliveryAddress: formSale.address,
+      deliveryNumber: +formSale.number,
+      products: cart.map(({ id: pId, quantity }) => ({
+        productId: pId,
+        quantity,
+      })),
+    };
+    const response = await registerSale(sale, userData.token);
+    if (response.message) setAlert(true);
+    else navigate(`/customer/orders/${id}`);
   };
+
+  const getNameSellers = async () => {
+    const allSellers = await listSellers();
+    setSellers(allSellers);
+  };
+
+  useEffect(() => {
+    getNameSellers();
+    setAlert(false);
+  }, []);
 
   return (
     <section>
       <form className="w-full shadow-xl flex">
-        <label htmlFor="salesperson" className="text-center">
+        <label htmlFor="salesperson" className="text-center px-10">
           P. Vendedora responsável:
           <select
             id="salesperson"
@@ -37,15 +64,14 @@ function FormDetailAdress() {
             <option value="select" disabled selected className="text-center">
               --select--
             </option>
-            <option className="text-center" value="vendedor-1">
-              ciclano da silva
-            </option>
-            <option className="text-center" value="vendedor-2">
-              beltrano pereira
-            </option>
+            {sellers.map(({ id, name }) => (
+              <option className="text-center" value={ id } key={ id }>
+                {name}
+              </option>
+            ))}
           </select>
         </label>
-        <label htmlFor="adress" className="text-center">
+        <label htmlFor="adress" className="text-center px-2">
           Endereço:
           <input
             id="adress"
@@ -54,7 +80,7 @@ function FormDetailAdress() {
             placeholder="Endereço de entrega"
             value={ formSale.address }
             onChange={ (e) => handleChange(e, formSale, setFormSale) }
-            className={ `flex-1 w-full text-gray-700 bg-gray-200 rounded-md 
+            className={ `flex-1 text-gray-700 bg-gray-200 rounded-md 
         hover:bg-white border border-gray-200 outline-none focus:bg-white py-2 px-4 m-2` }
           />
         </label>
@@ -67,7 +93,7 @@ function FormDetailAdress() {
             placeholder="Nº casa/apt"
             value={ formSale.number }
             onChange={ (e) => handleChange(e, formSale, setFormSale) }
-            className={ `flex-1 w-full text-gray-700 bg-gray-200 rounded-md 
+            className={ `flex-1 text-gray-700 bg-gray-200 rounded-md 
         hover:bg-white border border-gray-200 
         outline-none focus:bg-white py-2 px-4 m-2 mb-4 w-20` }
           />
@@ -83,6 +109,12 @@ function FormDetailAdress() {
         >
           Finalizar Pedido
         </button>
+        {alert && (
+          <p>
+            Aconteceu algum erro!! Verifique se o formulário de entrega está
+            preenchido corretamente ou, faça o login e tente novamente por favor
+          </p>
+        )}
       </section>
     </section>
   );

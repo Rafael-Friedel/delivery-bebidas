@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-function TableDetailsSale() {
+function TableDetailsSale({ sale }) {
   return (
     <table className="w-full">
       <thead className="bg-gray-400 border-b-2 border-gray-200">
@@ -9,7 +10,7 @@ function TableDetailsSale() {
             className="p-3 text-sm font-semibold tracking-wide text-left"
             data-testid="customer_order_details__element-order-details-label-order-id"
           >
-            Pedido ex: 003
+            {`Pedido ${sale.id}`}
           </th>
           <th
             className="p-3 text-sm font-semibold tracking-wide text-left"
@@ -18,13 +19,13 @@ Reply
 
 "
           >
-            Vendedor Fulano..
+            {`Vendedor:  ${sale.seller.name}`}
           </th>
           <th
             className="p-3 text-sm font-semibold tracking-wide text-left"
             data-testid="customer_order_details__element-order-details-label-order-date"
           >
-            22/09/2022
+            {sale.saleDate}
           </th>
           <th
             className="p-3 text-sm font-semibold tracking-wide
@@ -32,7 +33,7 @@ Reply
             data-testid={ `customer_order_details__element-order-details-label-
             delivery-status<index>` }
           >
-            Pendente
+            {sale.status}
           </th>
           <th className="p-3 text-sm font-semibold tracking-wide text-left">
             <button
@@ -50,4 +51,27 @@ Reply
   );
 }
 
+TableDetailsSale.propTypes = {
+  sale: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    sellerId: PropTypes.number.isRequired,
+    status: PropTypes.string.isRequired,
+    saleDate: PropTypes.string.isRequired,
+    seller: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
+  }),
+};
+
+TableDetailsSale.defaultProps = {
+  sale: PropTypes.shape({
+    id: 0,
+    sellerId: 0,
+    status: 'PENDENTE',
+    saleDate: new Date(),
+    seller: PropTypes.shape({
+      name: 'Vendedor',
+    }),
+  }),
+};
 export default TableDetailsSale;

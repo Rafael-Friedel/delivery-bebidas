@@ -3,11 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import myContext from '../context/myContext';
 import listSellers from '../fetchs/listSellers';
 import registerSale from '../fetchs/registerSale';
+import {
+  clearProducts,
+  readProducts,
+} from '../services/localStorageCartProducts';
 
 function FormDetailAdress() {
   const navigate = useNavigate();
 
-  const { handleChange, cart, userData } = useContext(myContext);
+  const { handleChange, userData } = useContext(myContext);
 
   const [formSale, setFormSale] = useState({
     salesPerson: 'select',
@@ -20,20 +24,27 @@ function FormDetailAdress() {
   const [alert, setAlert] = useState(false);
 
   const finalizeOrder = async () => {
+    const myProducts = readProducts();
     const sale = {
       userId: userData.id,
       sellerId: +formSale.salesPerson,
-      totalPrice: +cart.reduce((acc, curr) => acc + curr.total, 0).toFixed(2),
+      totalPrice: +myProducts
+        .reduce((acc, curr) => acc + curr.total, 0)
+        .toFixed(2),
       deliveryAddress: formSale.address,
       deliveryNumber: +formSale.number,
-      products: cart.map(({ id: pId, quantity }) => ({
+      products: myProducts.map(({ id: pId, quantity }) => ({
         productId: pId,
         quantity,
       })),
     };
+
     const response = await registerSale(sale, userData.token);
     if (response.message) setAlert(true);
-    else navigate(`/customer/orders/${response.id}`);
+    else {
+      navigate(`/customer/orders/${response.id}`);
+      clearProducts();
+    }
   };
 
   const getNameSellers = async () => {

@@ -70,7 +70,7 @@ function TableDetailsProducts({ sale }) {
       hover:text-white hover:bg-red-600` }
         data-testid="customer_order_details__element-order-total-price"
       >
-        {`Total: R$ ${sale.totalPrice}`}
+        {`Total: R$ ${sale.totalPrice.replace('.', ',')}`}
       </p>
     </table>
   );

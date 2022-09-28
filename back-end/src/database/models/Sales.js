@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
       field: 'sale_date',
       defaultValue: DataTypes.NOW,
       get: function(){
-        return moment(this.getDataValue('DateTime')).format('DD.MM.YYYY')
+        return moment(this.getDataValue('DateTime')).format('DD/MM/YYYY')
       }
     },
     status: {

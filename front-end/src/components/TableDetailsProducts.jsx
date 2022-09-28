@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-function TableDetailsProducts() {
+function TableDetailsProducts({ sale }) {
   return (
     <table className="w-full shadow-xl">
       <thead className="bg-gray-200 border-b-2 border-gray-200">
@@ -23,72 +24,45 @@ function TableDetailsProducts() {
         </tr>
       </thead>
       <tbody className="bg-gray-50 border-b-2 border-gray-200">
-        <tr>
-          <td
-            className="p-3 text-sm text-gray-700 text-center"
-            data-testid="customer_order_details__element-order-table-item-number-<index>"
-          >
-            1
-          </td>
-          <td
-            className="p-3 text-sm text-gray-700 text-center"
-            data-testid="customer_order_details__element-order-table-name-<index>"
-          >
-            Budweiser lata 350ml
-          </td>
-          <td
-            className={ `p-3 text-sm text-gray-700 text-center 
+        {products.map((p, index) => (
+          <tr key={ index }>
+            <td
+              className="p-3 text-sm text-gray-700 text-center"
+              data-testid={ `customer_order_details__element-order-
+              table-item-number-${index}` }
+            >
+              {p.id}
+            </td>
+            <td
+              className="p-3 text-sm text-gray-700 text-center"
+              data-testid={ `customer_order_details__element-order-table-name-${index}"` }
+            >
+              {p.name}
+            </td>
+            <td
+              className={ `p-3 text-sm text-gray-700 text-center
           hover:text-white hover:bg-blue-600` }
-            data-testid="customer_order_details__element-order-table-quantity-<index>"
-          >
-            2
-          </td>
-          <td
-            className="p-3 text-sm text-gray-700 text-center"
-            data-testid="customer_order_details__element-order-table-unit-price-<index>"
-          >
-            R$3,50
-          </td>
-          <td
-            className="p-3 text-sm text-gray-700 text-center"
-            data-testid="customer_order_details__element-order-table-sub-total-<index>"
-          >
-            R$7,00
-          </td>
-        </tr>
-        <tr>
-          <td
-            className="p-3 text-sm text-gray-700 text-center"
-            data-testid="customer_order_details__element-order-table-item-number-<index>"
-          >
-            2
-          </td>
-          <td
-            className="p-3 text-sm text-gray-700 text-center"
-            data-testid="customer_order_details__element-order-table-name-<index>"
-          >
-            Skol lata 350ml
-          </td>
-          <td
-            className={ `p-3 text-sm text-gray-700 text-center 
-          hover:text-white hover:bg-blue-600` }
-            data-testid="customer_order_details__element-order-table-quantity-<index>"
-          >
-            10
-          </td>
-          <td
-            className="p-3 text-sm text-gray-700 text-center"
-            data-testid="customer_order_details__element-order-table-unit-price-<index>"
-          >
-            R$2,50
-          </td>
-          <td
-            className="p-3 text-sm text-gray-700 text-center"
-            data-testid="customer_order_details__element-order-table-sub-total-<index>"
-          >
-            R$25,00
-          </td>
-        </tr>
+              data-testid={ `customer_order_details__
+              element-order-table-quantity-${index}` }
+            >
+              {p.SalesProduct.quantity}
+            </td>
+            <td
+              className="p-3 text-sm text-gray-700 text-center"
+              data-testid={ `customer_order_details__
+              element-order-table-unit-price-${index}` }
+            >
+              {`R$ ${p.price}`}
+            </td>
+            <td
+              className="p-3 text-sm text-gray-700 text-center"
+              data-testid={ `customer_order_details__
+              element-order-table-sub-total-${index}` }
+            >
+              {`R$ ${+p.price * +p.SalesProduct.quantity}`}
+            </td>
+          </tr>
+        ))}
       </tbody>
       <p
         className={ `absolute bottom-10 right-40 h-16 w-16 border border-red-500 
@@ -96,10 +70,34 @@ function TableDetailsProducts() {
       hover:text-white hover:bg-red-600` }
         data-testid="customer_order_details__element-order-total-price"
       >
-        Total: R$32,00
+        {`Total: R$ ${sale.totalPrice.replace('.', ',')}`}
       </p>
     </table>
   );
 }
+
+TableDetailsProducts.propTypes = {
+  sale: PropTypes.shape({
+    totalPrice: PropTypes.number.isRequired,
+    products: PropTypes.objectOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        status: PropTypes.string.isRequired,
+        saleDate: PropTypes.string.isRequired,
+        SalesProduct: PropTypes.shape({
+          quantity: PropTypes.number.isRequired,
+        }),
+      }),
+    ),
+  }),
+};
+
+TableDetailsProducts.defaultProps = {
+  sale: PropTypes.shape({
+    totalPrice: 0,
+    products: [],
+  }),
+};
 
 export default TableDetailsProducts;

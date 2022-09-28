@@ -19,3 +19,7 @@ export const removeProducts = (products) => {
   const lastProducts = readProducts();
   saveProducts(lastProducts.filter(({ id }) => id !== products.id));
 };
+
+export const clearProducts = () => {
+  saveProducts([]);
+};

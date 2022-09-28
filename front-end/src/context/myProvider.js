@@ -31,15 +31,17 @@ function MyProvider({ children }) {
         return item;
       });
       setCart(addQty);
+      setCartProducts(addQty);
     } else {
+      newProduct.total = Number(newProduct.quantity) * Number(newProduct.price);
       const newCartState = [...cart, newProduct];
       setCart(newCartState);
+      setCartProducts(newCartState);
     }
-    setCartProducts(cart);
   };
 
-  const removeProduct = async (removedProduct) => {
-    const newCartState = cart.filter((item) => item.id !== removedProduct.id);
+  const removeProduct = async (removed) => {
+    const newCartState = cart.filter((item) => item.id !== removed.id);
     setCartProducts(newCartState);
     setCart(newCartState);
   };

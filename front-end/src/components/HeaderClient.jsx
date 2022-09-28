@@ -1,8 +1,10 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-function Header() {
+function HeaderClient({ name }) {
   const navigate = useNavigate();
+
   return (
     <header className="flex justify-between bg-teal-900 h-16">
       <nav className="flex">
@@ -26,7 +28,7 @@ function Header() {
           className="bg-teal-500 py-5 px-4 text-white"
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          Nome do Usuário
+          {name}
         </p>
         <button
           type="button"
@@ -43,4 +45,8 @@ function Header() {
   );
 }
 
-export default Header;
+HeaderClient.propTypes = {
+  name: PropTypes.string.isRequired,
+};
+
+export default HeaderClient;

@@ -26,16 +26,17 @@ const salesService = {
 
   findById: async (id) => {
     const sale = await model.Sale.findOne(
-      { where: { id }, 
-      include: [
-          { model: model.User, 
-            attributes: { 
-              exclude: ['password'] },
-              as: 'user',
-          }, 
-          { model: model.Product, 
-            as: 'Products',
-            through: { attributes: ['quantity'] } }] },
+      { where: { id },
+        include: [
+          { model: model.User, attributes: { exclude: ['password'] }, as: 'user' },
+          { model: model.User, attributes: { exclude: ['password'] }, as: 'seller' }, 
+          { 
+            model: model.Product,
+            as: 'Products', 
+            through: { attributes: ['quantity'] }, 
+          },
+        ], 
+      },
 );
 
     if (!sale) {

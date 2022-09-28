@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { logout } from '../services/localStorage';
+import myContext from '../context/myContext';
 
 function Header() {
   const navigate = useNavigate();
+  const { userData } = useContext(myContext);
+
   return (
     <header className="flex justify-between bg-teal-900 h-16">
       <nav className="flex">
@@ -26,12 +30,13 @@ function Header() {
           className="bg-teal-500 py-5 px-4 text-white"
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          Nome do Usuário
+          { userData.name }
         </p>
         <button
           type="button"
           onClick={ () => {
             navigate('/');
+            logout();
           } }
           className="bg-red-800 text-white w-20"
           data-testid="customer_products__element-navbar-link-logout"

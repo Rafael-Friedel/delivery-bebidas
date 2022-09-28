@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import HeaderClient from '../components/HeaderClient';
 import Products from '../components/Products';
 import myContext from '../context/myContext';
-import { getCartProducts } from '../services/localStorage';
 
 export default function CustomerProducts() {
   const navigate = useNavigate();
@@ -21,6 +20,7 @@ export default function CustomerProducts() {
     setButtonCart(
       totalCart === '0,00',
     );
+  });
 
   return (
     <>
@@ -39,7 +39,6 @@ export default function CustomerProducts() {
         >
           { totalCart }
         </span>
-        {totalCart}
       </button>
     </>
   );

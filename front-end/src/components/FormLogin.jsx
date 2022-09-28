@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import myContext from '../context/myContext';
 import loginUser from '../fetchs/loginUser';
 import validFormLogin from '../helpers/validFormLogin';
+import { setUser } from '../services/localStorage';
 
 function FormLogin() {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function FormLogin() {
     else {
       navigate('/customer/products');
       setUserData(response);
+      setUser(response);
     }
   };
 

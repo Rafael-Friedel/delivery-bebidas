@@ -76,6 +76,18 @@ const userService = {
     });
     return customers;
   },
+
+  getSellerById: async (id) => {
+    const seller = await model.User.findOne({ 
+      where: { id }, 
+      attributes: { exclude: ['password'] },
+      raw: true, 
+    });
+
+    if (!seller) return throwNotExistError();
+
+    return seller;
+  },
   
   /* getById: async (id) => {
     const user = await model.User

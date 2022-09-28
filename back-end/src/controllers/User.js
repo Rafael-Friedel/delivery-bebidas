@@ -24,6 +24,13 @@ const userController = {
     
     return res.status(200).json(userWithToken);
   },
+
+  findSellerById: async (req, res) => {
+    const { sellerId } = req.body;
+    const seller = await userService.getSellerById(sellerId);
+
+    return res.status(200).json(seller);
+  },
 };
 
 module.exports = userController;

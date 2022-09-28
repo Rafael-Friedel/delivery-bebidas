@@ -1,3 +1,4 @@
+const moment = require("moment/moment");
 const { DATE } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
@@ -49,7 +50,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.DATE,
       field: 'sale_date',
-      defaultValue: DataTypes.NOW
+      defaultValue: DataTypes.NOW,
+      get: function(){
+        return moment(this.getDataValue('DateTime')).format('DD.MM.YYYY')
+      }
     },
     status: {
       allowNull: false,

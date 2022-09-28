@@ -7,14 +7,14 @@ function Header() {
     <header className="flex justify-between bg-teal-900 h-16">
       <nav className="flex">
         <Link
-          to="customer/products"
+          to="/customer/products"
           className="hover:bg-teal-600 hover:rounded-md m-4 ml-20 px-4 text-white"
           data-testid="customer_products__element-navbar-link-products"
         >
           Produtos
         </Link>
         <Link
-          to="customer/orders/:id"
+          to="/customer/orders/:id"
           className="hover:bg-teal-600 hover:rounded-md m-4 text-white px-4"
           data-testid="customer_products__element-navbar-link-orders"
         >

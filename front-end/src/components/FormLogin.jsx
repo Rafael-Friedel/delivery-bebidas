@@ -6,7 +6,7 @@ import validFormLogin from '../helpers/validFormLogin';
 
 function FormLogin() {
   const navigate = useNavigate();
-  const { handleChange, setAlertLogin } = useContext(myContext);
+  const { handleChange, setAlertLogin, setUserData } = useContext(myContext);
   const [login, setLogin] = useState({
     email: '',
     password: '',
@@ -22,7 +22,10 @@ function FormLogin() {
   const buttonLogin = async () => {
     const response = await loginUser(login);
     if (response.message) setAlertLogin(true);
-    else navigate('/customer/products');
+    else {
+      navigate('/customer/products');
+      setUserData(response);
+    }
   };
 
   return (

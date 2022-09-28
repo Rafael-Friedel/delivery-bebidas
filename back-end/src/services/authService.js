@@ -1,10 +1,14 @@
 require('dotenv').config();
+const fs = require('fs');
+
+const senhaSecreta = 'jwt.evaluation.key';
 
 const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const { throwUnauthorizedError } = require('./utils');
 
-const secret = process.env.JWT_SECRET || 'senhasecreta';
+// const secret = process.env.JWT_SECRET || 'senhasecreta';
+const secret = fs.readFileSync(senhaSecreta, 'utf-8');
 
 const authService = {
   validateBodyLogin: async (body) => {

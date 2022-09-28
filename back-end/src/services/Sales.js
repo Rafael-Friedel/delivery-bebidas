@@ -9,7 +9,7 @@ const salesService = {
       totalPrice: obj.totalPrice,
       deliveryAddress: obj.deliveryAddress,
       deliveryNumber: obj.deliveryNumber,
-      status: 'pendent',
+      status: 'Pendente',
     };
 
     const { products } = obj;
@@ -19,12 +19,26 @@ const salesService = {
     const response = products
       .map((element) => model.SalesProduct.create({ ...element, saleId: created.id }));
 
-    const res = Promise.all(response);
-    return res;
+    await Promise.all(response);
+
+    return created;
   },
 
   findById: async (id) => {
-    const sale = await model.Sale.findByPk(id);
+    const sale = await model.Sale.findOne(
+      { where: { id },
+        include: [
+          { model: model.User, attributes: { exclude: ['password'] }, as: 'user' },
+          { model: model.User, attributes: { exclude: ['password'] }, as: 'seller' }, 
+          { 
+            model: model.Product,
+            as: 'Products', 
+            through: { attributes: ['quantity'] }, 
+          },
+        ], 
+      },
+);
+
     if (!sale) {
       return throwNotExistError('Sale not found');
     }
@@ -32,9 +46,23 @@ const salesService = {
   },
 
   findBySellerId: async (id) => {
-    const sellerSales = await model.Sale.findAll({ where: { sellerId: id } });
+    const sellerSales = await model.Sale.findAll({ where: { sellerId: id },
+      });
 
     return sellerSales;
+  },
+
+  findByCustomerId: async (id) => {
+    const customerOrder = await model.Sale.findAll({ where: { userId: id },
+      });
+
+    return customerOrder;
+  },
+
+  updateStatus: async (id, newStatus) => {
+    const updatedSale = await model.Sale.update({ status: newStatus }, { where: { id } });
+
+    return updatedSale;
   },
 };
 

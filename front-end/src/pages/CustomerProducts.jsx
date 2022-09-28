@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import myContext from '../context/myContext';
 import HeaderClient from '../components/HeaderClient';
-// import { getCartProducts } from '../services/localStorage';
 import Products from '../components/Products';
+import myContext from '../context/myContext';
+import { getCartProducts } from '../services/localStorage';
 
 export default function CustomerProducts() {
   const navigate = useNavigate();
@@ -21,25 +21,25 @@ export default function CustomerProducts() {
     setButtonCart(
       totalCart === '0,00',
     );
-  }, [totalCart]);
 
   return (
     <>
       <HeaderClient />
-      { products.map((product) => <Products key={ product.id } product={ product } />) }
+      {products.map((product) => (
+        <Products key={ product.id } product={ product } />
+      ))}
       <button
         type="button"
-        // data-testid="customer_products__checkout-bottom-value"
         data-testid="customer_products__button-cart"
         disabled={ buttonCart }
         onClick={ () => navigate('/customer/checkout') }
       >
         <span
-          // data-testid="customer_products__button-cart"
           data-testid="customer_products__checkout-bottom-value"
         >
           { totalCart }
         </span>
+        {totalCart}
       </button>
     </>
   );

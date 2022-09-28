@@ -27,12 +27,12 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
   });
 
-  User.associate = (models) => {
+  /* User.associate = (models) => {
     User.hasMany(models.Sale,
-      { foreignKey: 'user_id'});
+      { foreignKey: 'user_id' });
     User.hasMany(models.Sale,
-      { foreignKey: 'seller_id'});
-  };
+      { foreignKey: 'seller_id' });
+  }; */
 
   return User;
 };

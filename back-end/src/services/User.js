@@ -8,7 +8,7 @@ const authService = require('./authService');
 
 const userService = {
   getByEmail: async (obj) => {
-    const user = await model.User.findOne({ where: { email: obj.email } });
+    const user = await model.User.findOne({ where: { email: obj.email }, raw: true });
     if (!user) {
       return throwNotExistError('Not found');
     }
@@ -21,10 +21,12 @@ const userService = {
 
     const token = await authService.generateToken(user.email);
 
+    const userWithoutPassword = await model.User.findOne({ where: { email: user.email }, 
+      attributes: { exclude: ['password'] },
+      raw: true });
+
     const userToReturn = {
-      name: user.name,
-      email: user.email,
-      role: user.role,
+      ...userWithoutPassword,
       token,      
     };
     
@@ -65,12 +67,27 @@ const userService = {
     });
     return sellers;
   },
-  
-  /* getById: async (id) => {
-    const user = await model.User
-    .findOne({ where: { id }, attributes: { exclude: ['password'] } });    
+
+  getAllCustomers: async () => {
+    const customers = await model.User.findAll({ where: { role: 'customer' }, 
+      attributes: { 
+        exclude: ['password'], 
+      }, 
+    });
+    return customers;
+  },
+
+  findUserById: async (id) => {
+    const user = await model.User.findOne({ 
+      where: { id }, 
+      attributes: { exclude: ['password'] },
+      raw: true, 
+    });
+
+    if (!user) return throwNotExistError('User not found');
+
     return user;
-  }, */
+  },  
 };
 
 module.exports = userService;

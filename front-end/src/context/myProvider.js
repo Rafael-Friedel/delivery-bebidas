@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React, { useMemo, useState } from 'react';
-import myContext from './myContext';
 import productsList from '../fetchs/products';
 import { setCartProducts } from '../services/localStorage';
+import myContext from './myContext';
 
 function MyProvider({ children }) {
   const handleChange = ({ target }, state, setState) => {
@@ -14,6 +14,7 @@ function MyProvider({ children }) {
   const [alertRegister, setAlertRegister] = useState(false);
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [userData, setUserData] = useState({});
 
   const getProducts = async () => {
     const productsAPI = await productsList();
@@ -58,6 +59,8 @@ function MyProvider({ children }) {
     setCart,
     addProduct,
     removeProduct,
+    userData,
+    setUserData,
   };
 
   const memoStore = useMemo(() => store);

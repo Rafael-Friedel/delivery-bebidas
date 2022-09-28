@@ -28,10 +28,10 @@ module.exports = (sequelize, DataTypes) => {
     underscored: true,
   });
 
-  Product.associate = (models) => {
+ /*  Product.associate = (models) => {
     Product.hasMany(models.SalesProduct,
       { foreignKey: 'product_id'});
-  };
+  }; */
 
   return Product;
 };

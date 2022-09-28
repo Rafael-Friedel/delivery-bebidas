@@ -46,7 +46,11 @@ function HeaderClient({ name }) {
 }
 
 HeaderClient.propTypes = {
-  name: PropTypes.string.isRequired,
+  name: PropTypes.string,
+};
+
+HeaderClient.defaultProps = {
+  name: 'Nome do Usuário',
 };
 
 export default HeaderClient;

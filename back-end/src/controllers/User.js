@@ -25,11 +25,11 @@ const userController = {
     return res.status(200).json(userWithToken);
   },
 
-  findSellerById: async (req, res) => {
-    const { sellerId } = req.body;
-    const seller = await userService.getSellerById(sellerId);
+  findUserById: async (req, res) => {
+    const { id } = req.body;
+    const user = await userService.findUserById(id);
 
-    return res.status(200).json(seller);
+    return res.status(200).json(user);
   },
 };
 

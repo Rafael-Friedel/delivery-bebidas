@@ -77,23 +77,17 @@ const userService = {
     return customers;
   },
 
-  getSellerById: async (id) => {
-    const seller = await model.User.findOne({ 
+  findUserById: async (id) => {
+    const user = await model.User.findOne({ 
       where: { id }, 
       attributes: { exclude: ['password'] },
       raw: true, 
     });
 
-    if (!seller) return throwNotExistError();
+    if (!user) return throwNotExistError('User not found');
 
-    return seller;
-  },
-  
-  /* getById: async (id) => {
-    const user = await model.User
-    .findOne({ where: { id }, attributes: { exclude: ['password'] } });    
     return user;
-  }, */
+  },  
 };
 
 module.exports = userService;

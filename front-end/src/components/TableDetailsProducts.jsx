@@ -24,7 +24,7 @@ function TableDetailsProducts({ sale }) {
         </tr>
       </thead>
       <tbody className="bg-gray-50 border-b-2 border-gray-200">
-        {products.map((p, index) => (
+        {sale.Products.map((p, index) => (
           <tr key={ index }>
             <td
               className="p-3 text-sm text-gray-700 text-center"
@@ -52,14 +52,16 @@ function TableDetailsProducts({ sale }) {
               data-testid={ `customer_order_details__
               element-order-table-unit-price-${index}` }
             >
-              {`R$ ${p.price}`}
+              {`R$ ${Number(p.price).toFixed(2).replace('.', ',')}`}
             </td>
             <td
               className="p-3 text-sm text-gray-700 text-center"
               data-testid={ `customer_order_details__
               element-order-table-sub-total-${index}` }
             >
-              {`R$ ${+p.price * +p.SalesProduct.quantity}`}
+              {`R$ ${(+p.price * +p.SalesProduct.quantity)
+                .toFixed(2)
+                .replace('.', ',')}`}
             </td>
           </tr>
         ))}
@@ -78,8 +80,8 @@ function TableDetailsProducts({ sale }) {
 
 TableDetailsProducts.propTypes = {
   sale: PropTypes.shape({
-    totalPrice: PropTypes.number.isRequired,
-    products: PropTypes.objectOf(
+    totalPrice: PropTypes.string.isRequired,
+    Products: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,

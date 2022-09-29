@@ -28,7 +28,7 @@ function TableDetailsProductsCheckout() {
                 className="p-3 text-sm text-gray-700 hover:bg-blue-400"
                 data-testid={ `${testId}-item-number-${index}` }
               >
-                {p.id}
+                {index + 1}
               </td>
               <td
                 className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"

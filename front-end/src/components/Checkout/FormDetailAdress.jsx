@@ -11,7 +11,7 @@ import {
 function FormDetailAdress() {
   const navigate = useNavigate();
 
-  const { handleChange, userData } = useContext(myContext);
+  const { handleChange, userData, setCart } = useContext(myContext);
 
   const [formSale, setFormSale] = useState({
     salesPerson: 'select',
@@ -44,6 +44,7 @@ function FormDetailAdress() {
     else {
       navigate(`/customer/orders/${response.id}`);
       clearProducts();
+      setCart([]);
     }
   };
 

@@ -18,56 +18,58 @@ function TableDetailsProductsCheckout() {
 
   const myProducts = readProducts();
   return (
-    <table className="w-full shadow-xl">
-      <TheadDetailsProductsCheckout />
-      <tbody className="bg-gray-50 border-b-2 border-gray-200">
-        {myProducts.map((p, index) => (
-          <tr key={ index }>
-            <td
-              className="p-3 text-sm text-gray-700 hover:bg-blue-400"
-              data-testid={ `${testId}-item-number-${p.id}` }
-            >
-              {p.id}
-            </td>
-            <td
-              className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
-              data-testid={ `${testId}-name-${p.id}` }
-            >
-              {p.name}
-            </td>
-            <td
-              className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
-              data-testid={ `${testId}-quantity-${p.id}` }
-            >
-              {p.quantity}
-            </td>
-            <td
-              className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
-              data-testid={ `${testId}-unit-price-${p.id}` }
-            >
-              {`R$ ${Number(p.price).toFixed(2).replace('.', ',')}`}
-            </td>
-            <td
-              className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
-              data-testid={ `${testId}-sub-total-${p.id}` }
-            >
-              {`R$ ${Number(p.total).toFixed(2).replace('.', ',')}`}
-            </td>
-            <td
-              className={ `p-3 text-sm text-gray-700 text-center 
-                hover:bg-red-600 hover:text-white` }
-            >
-              <button
-                type="button"
-                data-testid={ `${testId}-remove-${p.id}` }
-                onClick={ () => rmvProducts(p) }
+    <>
+      <table className="w-full shadow-xl">
+        <TheadDetailsProductsCheckout />
+        <tbody className="bg-gray-50 border-b-2 border-gray-200">
+          {myProducts.map((p, index) => (
+            <tr key={ index }>
+              <td
+                className="p-3 text-sm text-gray-700 hover:bg-blue-400"
+                data-testid={ `${testId}-item-number-${p.id}` }
               >
-                Remover
-              </button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
+                {p.id}
+              </td>
+              <td
+                className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
+                data-testid={ `${testId}-name-${p.id}` }
+              >
+                {p.name}
+              </td>
+              <td
+                className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
+                data-testid={ `${testId}-quantity-${p.id}` }
+              >
+                {p.quantity}
+              </td>
+              <td
+                className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
+                data-testid={ `${testId}-unit-price-${p.id}` }
+              >
+                {`R$ ${Number(p.price).toFixed(2).replace('.', ',')}`}
+              </td>
+              <td
+                className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
+                data-testid={ `${testId}-sub-total-${p.id}` }
+              >
+                {`R$ ${Number(p.total).toFixed(2).replace('.', ',')}`}
+              </td>
+              <td
+                className={ `p-3 text-sm text-gray-700 text-center 
+                hover:bg-red-600 hover:text-white` }
+              >
+                <button
+                  type="button"
+                  data-testid={ `${testId}-remove-${p.id}` }
+                  onClick={ () => rmvProducts(p) }
+                >
+                  Remover
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <section className="m-2">
         <p
           className={ `h-16 w-16 border border-red-500 
@@ -81,7 +83,7 @@ function TableDetailsProductsCheckout() {
             .replace('.', ',')}`}
         </p>
       </section>
-    </table>
+    </>
   );
 }
 

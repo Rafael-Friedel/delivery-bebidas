@@ -8,31 +8,31 @@ function TableDetailsSale({ sale }) {
       <thead className="bg-gray-400 border-b-2 border-gray-200">
         <tr>
           <th
-            className="p-3 text-sm font-semibold tracking-wide text-left"
+            className="p-3 text-sm font-semibold tracking-wide text-center"
             data-testid="customer_order_details__element-order-details-label-order-id"
           >
             {`Pedido ${sale.id}`}
           </th>
           <th
-            className="p-3 text-sm font-semibold tracking-wide text-left"
+            className="p-3 text-sm font-semibold tracking-wide text-center"
             data-testid="customer_order_details__element-order-details-label-seller-name"
           >
             {`Vendedor:  ${sale.seller.name}`}
           </th>
           <th
-            className="p-3 text-sm font-semibold tracking-wide text-left"
+            className="p-3 text-sm font-semibold tracking-wide text-center"
             data-testid="customer_order_details__element-order-details-label-order-date"
           >
-            {sale.saleDate}
+            {`Data: ${sale.saleDate}`}
           </th>
           <th
             className="p-3 text-sm font-semibold tracking-wide
-          text-left bg-red-500"
+          text-center bg-red-500"
             data-testid={ `${testId}delivery-status${sale.id}` }
           >
             {sale.status}
           </th>
-          <th className="p-3 text-sm font-semibold tracking-wide text-left">
+          <th className="p-3 text-sm font-semibold tracking-wide text-center">
             <button
               type="button"
               className={ `bg-teal-500 hover:bg-teal-600 outline-none py-2 

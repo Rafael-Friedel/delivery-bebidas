@@ -99,7 +99,7 @@ function FormDetailAdress() {
           Número
           <input
             id="number"
-            data-testid="customer_checkout__input-addressNumber"
+            data-testid="customer_checkout__input-address-number"
             name="number"
             placeholder="Nº casa/apt"
             value={ formSale.number }

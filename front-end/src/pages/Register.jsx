@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import FormRegister from '../components/FormRegister';
+import FormRegister from '../components/Register/FormRegister';
 import myContext from '../context/myContext';
 
 function Register() {

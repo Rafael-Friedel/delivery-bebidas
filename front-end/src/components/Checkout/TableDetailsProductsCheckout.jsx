@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import myContext from '../context/myContext';
+import myContext from '../../context/myContext';
 import {
   readProducts,
   removeProducts,
-} from '../services/localStorageCartProducts';
+} from '../../services/localStorageCartProducts';
 import TheadDetailsProductsCheckout from './TheadDetailsProductsCheckout';
 
 function TableDetailsProductsCheckout() {

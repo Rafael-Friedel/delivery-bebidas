@@ -1,6 +1,6 @@
-import React, { useContext, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import myContext from '../context/myContext';
+import React, { useContext, useEffect, useState } from 'react';
+import myContext from '../../context/myContext';
 
 export default function Products(props) {
   const { product } = props;
@@ -13,10 +13,7 @@ export default function Products(props) {
 
   useEffect(() => {
     if (quantity > 0) {
-      addProduct({ ...product,
-        quantity,
-        total: 0,
-      });
+      addProduct({ ...product, quantity, total: 0 });
     } else {
       removeProduct(product);
     }
@@ -24,15 +21,11 @@ export default function Products(props) {
 
   return (
     <li>
-      <p
-        data-testid={ `customer_products__element-card-title-${product.id}` }
-      >
+      <p data-testid={ `customer_products__element-card-title-${product.id}` }>
         {product.name}
       </p>
-      <span
-        data-testid={ `customer_products__element-card-price-${product.id}` }
-      >
-        { product.price.replace('.', ',') }
+      <span data-testid={ `customer_products__element-card-price-${product.id}` }>
+        {product.price.replace('.', ',')}
       </span>
       <img
         src={ product.urlImage }

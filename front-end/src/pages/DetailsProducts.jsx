@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import TableDetailsProducts from '../components/DetailsProducts/TableDetailsProducts';
+import TableDetailsSale from '../components/DetailsProducts/TableDetailsSale';
 import HeaderClient from '../components/HeaderClient';
-import TableDetailsProducts from '../components/TableDetailsProducts';
-import TableDetailsSale from '../components/TableDetailsSale';
 import getSaleById from '../fetchs/getSaleById';
 
 function DetailsProducts() {

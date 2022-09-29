@@ -14,6 +14,8 @@ function TableDetailsProductsCheckout() {
     removeProducts(product);
   };
 
+  const testId = 'customer_checkout__element-order-table';
+
   const myProducts = readProducts();
   return (
     <table className="w-full shadow-xl">
@@ -23,34 +25,31 @@ function TableDetailsProductsCheckout() {
           <tr key={ index }>
             <td
               className="p-3 text-sm text-gray-700 hover:bg-blue-400"
-              data-testid={ `customer_checkout__element
-                -order-table-item-number-${index}` }
+              data-testid={ `${testId}-item-number-${p.id}` }
             >
               {p.id}
             </td>
             <td
               className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
-              data-testid={ `customer_checkout__element-order-table-name-${index}` }
+              data-testid={ `${testId}-name-${p.id}` }
             >
               {p.name}
             </td>
             <td
               className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
-              data-testid={ `customer_checkout__element-order-table-quantity-${index}` }
+              data-testid={ `${testId}-quantity-${p.id}` }
             >
               {p.quantity}
             </td>
             <td
               className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
-              data-testid={ `customer_checkout__
-                element-order-table-unit-price-${index}` }
+              data-testid={ `${testId}-unit-price-${p.id}` }
             >
               {`R$ ${Number(p.price).toFixed(2).replace('.', ',')}`}
             </td>
             <td
               className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
-              data-testid={ `customer_checkout__element-
-                order-table-sub-total-${index}` }
+              data-testid={ `${testId}-sub-total-${p.id}` }
             >
               {`R$ ${Number(p.total).toFixed(2).replace('.', ',')}`}
             </td>
@@ -60,7 +59,7 @@ function TableDetailsProductsCheckout() {
             >
               <button
                 type="button"
-                data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+                data-testid={ `${testId}-remove-${p.id}` }
                 onClick={ () => rmvProducts(p) }
               >
                 Remover

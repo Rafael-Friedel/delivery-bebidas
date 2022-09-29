@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 function TableDetailsProducts({ sale }) {
+  const testId = 'customer_order_details__element-order-table';
+
   return (
     <table className="w-full shadow-xl">
       <thead className="bg-gray-200 border-b-2 border-gray-200">
@@ -28,36 +30,32 @@ function TableDetailsProducts({ sale }) {
           <tr key={ index }>
             <td
               className="p-3 text-sm text-gray-700 text-center"
-              data-testid={ `customer_order_details__element-order-
-              table-item-number-${index}` }
+              data-testid={ `${testId}-item-number-${p.id}` }
             >
               {p.id}
             </td>
             <td
               className="p-3 text-sm text-gray-700 text-center"
-              data-testid={ `customer_order_details__element-order-table-name-${index}"` }
+              data-testid={ `${testId}-name-${p.id}"` }
             >
               {p.name}
             </td>
             <td
               className={ `p-3 text-sm text-gray-700 text-center
           hover:text-white hover:bg-blue-600` }
-              data-testid={ `customer_order_details__
-              element-order-table-quantity-${index}` }
+              data-testid={ `${testId}-quantity-${p.id}` }
             >
               {p.SalesProduct.quantity}
             </td>
             <td
               className="p-3 text-sm text-gray-700 text-center"
-              data-testid={ `customer_order_details__
-              element-order-table-unit-price-${index}` }
+              data-testid={ `${testId}-unit-price-${p.id}` }
             >
               {`R$ ${Number(p.price).toFixed(2).replace('.', ',')}`}
             </td>
             <td
               className="p-3 text-sm text-gray-700 text-center"
-              data-testid={ `customer_order_details__
-              element-order-table-sub-total-${index}` }
+              data-testid={ `${testId}-sub-total-${p.id}` }
             >
               {`R$ ${(+p.price * +p.SalesProduct.quantity)
                 .toFixed(2)

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 function TableDetailsSale({ sale }) {
+  const testId = 'customer_order_details__element-order-details-label-';
   return (
     <table className="w-full">
       <thead className="bg-gray-400 border-b-2 border-gray-200">
@@ -14,10 +15,7 @@ function TableDetailsSale({ sale }) {
           </th>
           <th
             className="p-3 text-sm font-semibold tracking-wide text-left"
-            data-testid="customer_order_details__element-order-details-label-seller-name
-Reply
-
-"
+            data-testid="customer_order_details__element-order-details-label-seller-name"
           >
             {`Vendedor:  ${sale.seller.name}`}
           </th>
@@ -30,8 +28,7 @@ Reply
           <th
             className="p-3 text-sm font-semibold tracking-wide
           text-left bg-red-500"
-            data-testid={ `customer_order_details__element-order-details-label-
-            delivery-status<index>` }
+            data-testid={ `${testId}delivery-status${sale.id}` }
           >
             {sale.status}
           </th>

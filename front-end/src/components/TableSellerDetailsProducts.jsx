@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
-import TheadDetailsProductsCheckout from './TheadDetailsProductsCheckout';
+import TheadDetailsProductsSeller from './TheadDetailsProductsSeller';
 
 function TableSellerDetailsProducts({ sale }) {
   const [orders, setOrders] = useState([]);
@@ -25,7 +25,7 @@ function TableSellerDetailsProducts({ sale }) {
   return (
     <>
       <table className="w-full shadow-xl">
-        <TheadDetailsProductsCheckout />
+        <TheadDetailsProductsSeller />
         <tbody className="bg-gray-50 border-b-2 border-gray-200">
           {
             orders.length > 0 && orders[0].Products.map((p, index) => (

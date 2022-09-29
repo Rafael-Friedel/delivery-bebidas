@@ -26,31 +26,31 @@ function TableDetailsProductsCheckout() {
             <tr key={ index }>
               <td
                 className="p-3 text-sm text-gray-700 hover:bg-blue-400"
-                data-testid={ `${testId}-item-number-${p.id}` }
+                data-testid={ `${testId}-item-number-${index}` }
               >
                 {p.id}
               </td>
               <td
                 className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
-                data-testid={ `${testId}-name-${p.id}` }
+                data-testid={ `${testId}-name-${index}` }
               >
                 {p.name}
               </td>
               <td
                 className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
-                data-testid={ `${testId}-quantity-${p.id}` }
+                data-testid={ `${testId}-quantity-${index}` }
               >
                 {p.quantity}
               </td>
               <td
                 className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
-                data-testid={ `${testId}-unit-price-${p.id}` }
+                data-testid={ `${testId}-unit-price-${index}` }
               >
                 {`R$ ${Number(p.price).toFixed(2).replace('.', ',')}`}
               </td>
               <td
                 className="p-3 text-sm text-gray-700 text-center hover:bg-blue-400"
-                data-testid={ `${testId}-sub-total-${p.id}` }
+                data-testid={ `${testId}-sub-total-${index}` }
               >
                 {`R$ ${Number(p.total).toFixed(2).replace('.', ',')}`}
               </td>
@@ -60,7 +60,7 @@ function TableDetailsProductsCheckout() {
               >
                 <button
                   type="button"
-                  data-testid={ `${testId}-remove-${p.id}` }
+                  data-testid={ `${testId}-remove-${index}` }
                   onClick={ () => rmvProducts(p) }
                 >
                   Remover

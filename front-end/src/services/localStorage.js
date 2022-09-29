@@ -20,6 +20,6 @@ export const setCartProducts = (product) => {
   localStorage.setItem(CART, JSON.stringify(product));
 };
 
-export const clearStorage = () => {
-  localStorage.clear();
+export const logout = () => {
+  localStorage.setItem(USER, '');
 };

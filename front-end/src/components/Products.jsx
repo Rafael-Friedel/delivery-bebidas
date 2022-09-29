@@ -4,14 +4,22 @@ import myContext from '../context/myContext';
 
 export default function Products(props) {
   const { product } = props;
-  const { addProduct } = useContext(myContext);
-  const [quantity, setValue] = useState(0);
+  const { addProduct, removeProduct } = useContext(myContext);
+  const [quantity, setQuantity] = useState(0);
+
+  // function qt() {
+  //   return console.log(quantity * product.price);
+  // }
 
   useEffect(() => {
-    async function handleChange() {
-      addProduct({ ...product, quantity, total: 0 });
+    if (quantity > 0) {
+      addProduct({ ...product,
+        quantity,
+        total: 0,
+      });
+    } else {
+      removeProduct(product);
     }
-    handleChange();
   }, [quantity]);
 
   return (
@@ -35,7 +43,7 @@ export default function Products(props) {
       <button
         type="button"
         data-testid={ `customer_products__button-card-add-item-${product.id}` }
-        onClick={ () => setValue((prevCount) => prevCount + 1) }
+        onClick={ () => setQuantity(quantity + 1) }
       >
         +
       </button>
@@ -43,12 +51,12 @@ export default function Products(props) {
         type="text"
         data-testid={ `customer_products__input-card-quantity-${product.id}` }
         value={ quantity }
-        onChange={ ({ target }) => setValue(Number(target.value)) }
+        onChange={ ({ target }) => setQuantity(Number(target.value)) }
       />
       <button
         type="button"
         data-testid={ `customer_products__button-card-rm-item-${product.id}` }
-        onClick={ () => setValue((prevCount) => (quantity > 0 ? prevCount - 1 : 0)) }
+        onClick={ () => setQuantity(quantity > 0 ? quantity - 1 : 0) }
       >
         -
       </button>

@@ -38,6 +38,7 @@ function TableDetailsSale({ sale }) {
               className={ `bg-teal-500 hover:bg-teal-600 outline-none py-2 
         px-4 ml-4 text-white font-semibold rounded-md` }
               data-testid="customer_order_details__button-delivery-check"
+              disabled={ sale.status !== 'Em Trânsito' }
             >
               Marcar como entregue
             </button>

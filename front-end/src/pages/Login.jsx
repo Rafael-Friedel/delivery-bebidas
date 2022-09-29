@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import FormLogin from '../components/FormLogin';
-import Logo from '../components/Logo';
+import FormLogin from '../components/Login/FormLogin';
+import Logo from '../components/Login/Logo';
 import myContext from '../context/myContext';
 
 function Login() {

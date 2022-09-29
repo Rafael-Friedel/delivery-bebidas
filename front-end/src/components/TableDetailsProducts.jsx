@@ -1,69 +1,54 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import THeadTableDetailsProducts from './THeadTableDetailsProducts';
 
 function TableDetailsProducts({ sale }) {
   const testId = 'customer_order_details__element-order-table';
 
   return (
-    <table className="w-full shadow-xl">
-      <thead className="bg-gray-200 border-b-2 border-gray-200">
-        <tr>
-          <th className="w-12 p-3 text-sm font-semibold tracking-wide text-left">
-            Item
-          </th>
-          <th className="p-3 text-sm font-semibold tracking-wide text-center">
-            Descrição
-          </th>
-          <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">
-            Quantidade
-          </th>
-          <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">
-            Valor Unitário
-          </th>
-          <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">
-            Sub-total
-          </th>
-        </tr>
-      </thead>
-      <tbody className="bg-gray-50 border-b-2 border-gray-200">
-        {sale.Products.map((p, index) => (
-          <tr key={ index }>
-            <td
-              className="p-3 text-sm text-gray-700 text-center"
-              data-testid={ `${testId}-item-number-${p.id}` }
-            >
-              {p.id}
-            </td>
-            <td
-              className="p-3 text-sm text-gray-700 text-center"
-              data-testid={ `${testId}-name-${p.id}"` }
-            >
-              {p.name}
-            </td>
-            <td
-              className={ `p-3 text-sm text-gray-700 text-center
+    <>
+      <table className="w-full shadow-xl">
+        <THeadTableDetailsProducts />
+        <tbody className="bg-gray-50 border-b-2 border-gray-200">
+          {sale.Products.map((p, index) => (
+            <tr key={ index }>
+              <td
+                className="p-3 text-sm text-gray-700 text-center"
+                data-testid={ `${testId}-item-number-${p.id}` }
+              >
+                {p.id}
+              </td>
+              <td
+                className="p-3 text-sm text-gray-700 text-center"
+                data-testid={ `${testId}-name-${p.id}"` }
+              >
+                {p.name}
+              </td>
+              <td
+                className={ `p-3 text-sm text-gray-700 text-center
           hover:text-white hover:bg-blue-600` }
-              data-testid={ `${testId}-quantity-${p.id}` }
-            >
-              {p.SalesProduct.quantity}
-            </td>
-            <td
-              className="p-3 text-sm text-gray-700 text-center"
-              data-testid={ `${testId}-unit-price-${p.id}` }
-            >
-              {`R$ ${Number(p.price).toFixed(2).replace('.', ',')}`}
-            </td>
-            <td
-              className="p-3 text-sm text-gray-700 text-center"
-              data-testid={ `${testId}-sub-total-${p.id}` }
-            >
-              {`R$ ${(+p.price * +p.SalesProduct.quantity)
-                .toFixed(2)
-                .replace('.', ',')}`}
-            </td>
-          </tr>
-        ))}
-      </tbody>
+                data-testid={ `${testId}-quantity-${p.id}` }
+              >
+                {p.SalesProduct.quantity}
+              </td>
+              <td
+                className="p-3 text-sm text-gray-700 text-center"
+                data-testid={ `${testId}-unit-price-${p.id}` }
+              >
+                {`R$ ${Number(p.price).toFixed(2).replace('.', ',')}`}
+              </td>
+              <td
+                className="p-3 text-sm text-gray-700 text-center"
+                data-testid={ `${testId}-sub-total-${p.id}` }
+              >
+                {`R$ ${(+p.price * +p.SalesProduct.quantity)
+                  .toFixed(2)
+                  .replace('.', ',')}`}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <p
         className={ `absolute bottom-10 right-40 h-16 w-16 border border-red-500 
       font-semibold rounded-md ml-4 px-4 py-2 outline-none w-40 h-12 text-red-600 
@@ -72,7 +57,7 @@ function TableDetailsProducts({ sale }) {
       >
         {`Total: R$ ${sale.totalPrice.replace('.', ',')}`}
       </p>
-    </table>
+    </>
   );
 }
 

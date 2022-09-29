@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../services/localStorage';
 import myContext from '../context/myContext';
+import { logout } from '../services/localStorage';
 
 function Header() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function Header() {
           Produtos
         </Link>
         <Link
-          to="/customer/orders/:id"
+          to="/customer/orders"
           className="hover:bg-teal-600 hover:rounded-md m-4 text-white px-4"
           data-testid="customer_products__element-navbar-link-orders"
         >
@@ -30,7 +30,7 @@ function Header() {
           className="bg-teal-500 py-5 px-4 text-white"
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          { userData.name }
+          {userData.name}
         </p>
         <button
           type="button"

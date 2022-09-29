@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import myContext from '../context/myContext';
-import loginUser from '../fetchs/loginUser';
-import validFormLogin from '../helpers/validFormLogin';
-import { setUser } from '../services/localStorage';
+import myContext from '../../context/myContext';
+import loginUser from '../../fetchs/loginUser';
+import validFormLogin from '../../helpers/validFormLogin';
+import { setUser } from '../../services/localStorage';
 
 function FormLogin() {
   const navigate = useNavigate();

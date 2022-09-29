@@ -6,10 +6,11 @@ import {
 } from 'react-router-dom';
 import MyProvider from './context/myProvider';
 import Checkout from './pages/Checkout';
+import CustomerProducts from './pages/CustomerProducts';
 import DetailsProducts from './pages/DetailsProducts';
 import Login from './pages/Login';
+import MyOrders from './pages/MyOrders';
 import Register from './pages/Register';
-import CustomerProducts from './pages/CustomerProducts';
 import SellerOrders from './pages/SellerOrders';
 import SellerDetailSale from './pages/SellerDetailSale';
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/customer/products" element={ <CustomerProducts /> } />
           <Route path="/seller/orders/:id" element={ <SellerDetailSale /> } />
           <Route path="/seller/orders" element={ <SellerOrders /> } />
+          <Route path="/customer/orders" element={ <MyOrders /> } />
         </Routes>
       </MyProvider>
     </Router>

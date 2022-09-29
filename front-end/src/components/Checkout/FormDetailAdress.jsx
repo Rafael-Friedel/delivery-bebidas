@@ -1,17 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import myContext from '../context/myContext';
-import listSellers from '../fetchs/listSellers';
-import registerSale from '../fetchs/registerSale';
+import myContext from '../../context/myContext';
+import listSellers from '../../fetchs/listSellers';
+import registerSale from '../../fetchs/registerSale';
 import {
   clearProducts,
   readProducts,
-} from '../services/localStorageCartProducts';
+} from '../../services/localStorageCartProducts';
 
 function FormDetailAdress() {
   const navigate = useNavigate();
 
-  const { handleChange, userData } = useContext(myContext);
+  const { handleChange, userData, setCart } = useContext(myContext);
 
   const [formSale, setFormSale] = useState({
     salesPerson: 'select',
@@ -44,6 +44,7 @@ function FormDetailAdress() {
     else {
       navigate(`/customer/orders/${response.id}`);
       clearProducts();
+      setCart([]);
     }
   };
 

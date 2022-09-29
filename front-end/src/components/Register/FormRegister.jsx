@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import myContext from '../context/myContext';
-import createUser from '../fetchs/createUser';
-import validFormRegister from '../helpers/validFormRegister';
+import myContext from '../../context/myContext';
+import createUser from '../../fetchs/createUser';
+import validFormRegister from '../../helpers/validFormRegister';
 
 function FormRegister() {
   const navigate = useNavigate();

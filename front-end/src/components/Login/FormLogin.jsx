@@ -28,6 +28,7 @@ function FormLogin() {
       setUser(response);
       if (response.role === 'customer') navigate('/customer/products');
       if (response.role === 'seller') navigate('/seller/orders');
+      if (response.role === 'administrator') navigate('/admin/manage');
     }
   };
 

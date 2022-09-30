@@ -13,6 +13,7 @@ import MyOrders from './pages/MyOrders';
 import Register from './pages/Register';
 import SellerOrders from './pages/SellerOrders';
 import SellerDetailSale from './pages/SellerDetailSale';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/seller/orders/:id" element={ <SellerDetailSale /> } />
           <Route path="/seller/orders" element={ <SellerOrders /> } />
           <Route path="/customer/orders" element={ <MyOrders /> } />
+          <Route path="/admin/manage" element={ <Admin /> } />
         </Routes>
       </MyProvider>
     </Router>

@@ -87,7 +87,29 @@ const userService = {
     if (!user) return throwNotExistError('User not found');
 
     return user;
-  },  
+  },
+
+  adminCreate: async (object) => {    
+    const email = await model.User.findOne({ where: { email: object.email } });
+    // const name = await model.User.findOne({ where: { name: object.name } });
+
+    if (email) {
+      return throwConflictError();
+    }
+    const encripetedPass = md5(object.password);
+
+    const created = await model.User.create({ ...object, password: encripetedPass });
+    const user = await model.User.findOne({ where: { email: created.email }, 
+      attributes: { exclude: ['password'] } });
+
+    return user;
+  },
+
+  removeUser: async (id) => {
+    const user = await model.User.destroy({where: {id}});
+
+    return user;
+  } 
 };
 
 module.exports = userService;

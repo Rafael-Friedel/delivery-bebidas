@@ -31,6 +31,14 @@ const userController = {
 
     return res.status(200).json(user);
   },
+
+  remove: async (req, res) => {
+    const {id} = req.params;
+
+    const userRemove = await userService.removeUser(id);
+
+    res.status(200).json(userRemove);
+  }
 };
 
 module.exports = userController;

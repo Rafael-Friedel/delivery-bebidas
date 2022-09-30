@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import HeaderClient from '../components/HeaderClient';
 import getOrdersById from '../fetchs/getOrdersById';
 import { getUser } from '../services/localStorage';
@@ -6,6 +7,7 @@ import { getUser } from '../services/localStorage';
 function MyOrders() {
   const [myOrders, setMyOrders] = useState([]);
   const user = getUser();
+  const navigate = useNavigate();
 
   const getOrders = async (id) => {
     const orders = await getOrdersById(id);
@@ -16,7 +18,10 @@ function MyOrders() {
     getOrders(user.id);
   }, [user.id]);
 
-  console.log(myOrders);
+  const redirect = (id) => {
+    console.log(id);
+    navigate(`/customer/orders/${id}`);
+  };
 
   const testId = 'customer_orders__element-';
   return (
@@ -24,7 +29,12 @@ function MyOrders() {
       <HeaderClient />
       <section className="flex bg-blue-50 p-6 flex-wrap mx-28">
         {myOrders.map((o) => (
-          <section key={ o.id } className="flex m-6 rounded-lg ">
+          <button
+            key={ o.id }
+            className="flex m-6 rounded-lg"
+            onClick={ () => redirect(o.id) }
+            type="button"
+          >
             <section className="flex bg-white  shadow-md w-full items-center">
               <p
                 data-testid={ `${testId}order-id-${o.id}` }
@@ -48,12 +58,12 @@ function MyOrders() {
               </p>
               <p
                 data-testid={ `${testId}card-price-${o.id}` }
-                className="text-center px-2 m-2 bg-blue-300 "
+                className="text-center px-2  bg-blue-300"
               >
                 {`R$ ${o.totalPrice.replace('.', ',')}`}
               </p>
             </section>
-          </section>
+          </button>
         ))}
       </section>
     </main>

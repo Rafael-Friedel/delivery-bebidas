@@ -15,7 +15,7 @@ function Admin() {
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [users]);
 
   return (
     <section>

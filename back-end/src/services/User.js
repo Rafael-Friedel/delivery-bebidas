@@ -106,10 +106,10 @@ const userService = {
   },
 
   removeUser: async (id) => {
-    const user = await model.User.destroy({where: {id}});
+    const user = await model.User.destroy({ where: { id } });
 
     return user;
-  } 
+  },
 };
 
 module.exports = userService;

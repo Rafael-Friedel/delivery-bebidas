@@ -34,9 +34,9 @@ const salesController = {
   },
 
   findByCustomerId: async (req, res) => {
-    const { userId } = req.body;
+    const { id } = req.params;
 
-    const customerOrder = await salesService.findByCustomerId(userId);
+    const customerOrder = await salesService.findByCustomerId(id);
 
     return res.status(200).json(customerOrder);
   },
@@ -45,14 +45,14 @@ const salesController = {
     const { id } = req.params;
     const { status } = req.body;
 
-    if (!status) return throwNotExistError('You need to provide a status');    
+    if (!status) return throwNotExistError('You need to provide a status');
 
     const isPossible = possibleStatus.some((element) => status === element);
 
-    if (!isPossible) return throwInvalidFields('Invalid Status to update');    
+    if (!isPossible) return throwInvalidFields('Invalid Status to update');
 
     const updatedStatus = await salesService.updateStatus(id, status);
-    
+
     if (!updatedStatus) return throwInvalidFields();
 
     return res.status(200).json({ message: 'Status updated' });

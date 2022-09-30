@@ -29,7 +29,7 @@ function Header() {
           className="bg-teal-500 py-5 px-4 text-white"
           data-testid="customer_products__element-navbar-user-full-name"
         >
-          {user.name}
+          {user ? user.name : 'Nome do usuário'}
         </p>
         <button
           type="button"

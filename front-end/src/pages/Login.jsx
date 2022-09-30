@@ -1,10 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import FormLogin from '../components/Login/FormLogin';
 import Logo from '../components/Login/Logo';
 import myContext from '../context/myContext';
+import { getUser } from '../services/localStorage';
 
 function Login() {
   const { alertLogin } = useContext(myContext);
+  const navigate = useNavigate();
+  const user = getUser();
+  console.log(user);
+
+  const redirect = () => {
+    if (user) navigate('/customer/products');
+  };
+
+  useEffect(() => {
+    redirect();
+  }, []);
 
   return (
     <section className="bg-indigo-100">

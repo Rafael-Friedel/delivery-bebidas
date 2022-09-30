@@ -66,15 +66,4 @@ const salesService = {
   },
 };
 
-//   "userId": 3,
-//   "sellerId": 2,
-//   "totalPrice": 66,
-//   "deliveryAddress": "rua dos bobos",
-//   "deliveryNumber": 1,
-//   "status": "em progresso",
-//   "products": [
-//     { "productId":1, "quantity": 20 },
-//     { "productId": 2, "quantity": 5 }
-//   ]
-
 module.exports = salesService;

@@ -11,6 +11,8 @@ import DetailsProducts from './pages/DetailsProducts';
 import Login from './pages/Login';
 import MyOrders from './pages/MyOrders';
 import Register from './pages/Register';
+import SellerOrders from './pages/SellerOrders';
+import SellerDetailSale from './pages/SellerDetailSale';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
           <Route path="/customer/checkout" element={ <Checkout /> } />
           <Route path="/customer/orders/:id" element={ <DetailsProducts /> } />
           <Route path="/customer/products" element={ <CustomerProducts /> } />
+          <Route path="/seller/orders/:id" element={ <SellerDetailSale /> } />
+          <Route path="/seller/orders" element={ <SellerOrders /> } />
           <Route path="/customer/orders" element={ <MyOrders /> } />
         </Routes>
       </MyProvider>

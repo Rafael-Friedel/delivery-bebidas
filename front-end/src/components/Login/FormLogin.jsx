@@ -24,9 +24,10 @@ function FormLogin() {
     const response = await loginUser(login);
     if (response.message) setAlertLogin(true);
     else {
-      navigate('/customer/products');
       setUserData(response);
       setUser(response);
+      if (response.role === 'customer') navigate('/customer/products');
+      if (response.role === 'seller') navigate('/seller/orders');
     }
   };
 

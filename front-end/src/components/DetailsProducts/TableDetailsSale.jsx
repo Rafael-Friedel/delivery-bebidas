@@ -1,8 +1,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import updateStatus from '../../fetchs/updateSaleStatus';
 
 function TableDetailsSale({ sale }) {
   const testId = 'customer_order_details__element-order-details-label-';
+
+  function updateSaleStatus(status) {
+    updateStatus(status, sale.id);
+  }
+
   return (
     <table className="w-full">
       <thead className="bg-gray-400 border-b-2 border-gray-200">
@@ -39,6 +45,7 @@ function TableDetailsSale({ sale }) {
         px-4 ml-4 text-white font-semibold rounded-md` }
               data-testid="customer_order_details__button-delivery-check"
               disabled={ sale.status !== 'Em Trânsito' }
+              onClick={ () => updateSaleStatus('Entregue') }
             >
               Marcar como entregue
             </button>

@@ -62,27 +62,28 @@ function TableDetailsProducts({ sale }) {
 }
 
 TableDetailsProducts.propTypes = {
-  sale: PropTypes.shape({
-    totalPrice: PropTypes.string.isRequired,
-    Products: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        name: PropTypes.string.isRequired,
-        status: PropTypes.string.isRequired,
-        saleDate: PropTypes.string.isRequired,
-        SalesProduct: PropTypes.shape({
-          quantity: PropTypes.number.isRequired,
-        }),
-      }),
-    ),
-  }),
+  sale: PropTypes.instanceOf(Object).isRequired,
+  // sale: PropTypes.shape({
+  //   totalPrice: PropTypes.string.isRequired,
+  //   Products: PropTypes.arrayOf(
+  //     PropTypes.shape({
+  //       id: PropTypes.number.isRequired,
+  //       name: PropTypes.string.isRequired,
+  //       status: PropTypes.string.isRequired,
+  //       saleDate: PropTypes.string.isRequired,
+  //       SalesProduct: PropTypes.shape({
+  //         quantity: PropTypes.number.isRequired,
+  //       }),
+  //     }),
+  //   ),
+  // }),
 };
 
-TableDetailsProducts.defaultProps = {
-  sale: PropTypes.shape({
-    totalPrice: 0,
-    products: [],
-  }),
-};
+// TableDetailsProducts.defaultProps = {
+//   sale: PropTypes.shape({
+//     totalPrice: 0,
+//     products: [],
+//   }),
+// };
 
 export default TableDetailsProducts;

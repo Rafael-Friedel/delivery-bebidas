@@ -16,7 +16,7 @@ function DetailsProducts() {
 
   useEffect(() => {
     getSale(id);
-  }, [id]);
+  });
 
   return (
     <section>

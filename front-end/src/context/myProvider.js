@@ -15,6 +15,7 @@ function MyProvider({ children }) {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [userData, setUserData] = useState({});
+  const [users, setUsers] = useState([]);
 
   const getProducts = async () => {
     const productsAPI = await productsList();
@@ -61,6 +62,8 @@ function MyProvider({ children }) {
     removeProduct,
     userData,
     setUserData,
+    users,
+    setUsers,
   };
 
   const memoStore = useMemo(() => store);

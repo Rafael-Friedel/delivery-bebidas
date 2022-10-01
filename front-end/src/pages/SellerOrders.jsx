@@ -20,7 +20,7 @@ export default function SellerOrders() {
   return (
     <>
       <HeaderSeller />
-      <main>
+      <main className="w-full shadow-xl border-b-2">
         {
           orders.length > 0 && (
             orders.map((sale) => <SellerSaleCard key={ sale.id } sale={ sale } />)

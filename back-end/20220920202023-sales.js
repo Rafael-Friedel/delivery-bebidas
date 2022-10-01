@@ -9,7 +9,7 @@ module.exports = {
         total_price: 66,
         delivery_address: "Geremias de Santo Cristo",
         delivery_number: 540,
-        status: "Pendente",
+        status: "Em Trânsito",
         sale_date: '2022-09-26'
       },
       {
@@ -24,7 +24,7 @@ module.exports = {
       {        
         user_id: 3,
         seller_id: 2,
-        total_price: 134.46,
+        total_price: 122.85,
         delivery_address: 'rua dos lamentos',
         delivery_number: 3,
         status: 'Pendente',

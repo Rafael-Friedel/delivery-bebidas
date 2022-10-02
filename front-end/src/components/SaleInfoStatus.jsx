@@ -1,37 +1,55 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import updateStatus from '../fetchs/updateSaleStatus';
 
 function SaleInfoStatus({ sale }) {
+  const [colorStatus, setColorStatus] = useState('');
+
   const datatest = 'seller_order_details__element-order-details-label-delivery-status';
   function updateSaleStatus(status) {
     updateStatus(status, sale.id);
   }
 
+  function toggleColorStatus() {
+    const status = {
+      Pendente: 'bg-yellow-500',
+      Preparando: 'bg-green-500',
+      Entregue: 'bg-cyan-400',
+      'Em Trânsito': 'bg-purple-400',
+    };
+    setColorStatus(status[sale.status]);
+  }
+
+  useEffect(() => {
+    toggleColorStatus();
+  }, [sale]);
+
   return (
     <table className="w-full">
-      <thead className="bg-gray-400 border-b-2 border-gray-200">
+      <thead className="bg-slate-300 border-b-2 border-gray-200">
         <tr>
           <th
-            className="p-3 text-sm font-semibold tracking-wide text-left"
+            className="p-2 text-md font-semibold tracking-wide text-center"
             data-testid="seller_order_details__element-order-details-label-order-id"
           >
             {`Pedido ${sale.id}`}
           </th>
           <th
-            className="p-3 text-sm font-semibold tracking-wide text-left"
+            className="p-2 text-md font-semibold tracking-wide text-center"
             data-testid="seller_order_details__element-order-details-label-order-date"
           >
             {sale.saleDate}
           </th>
           <th
-            className="p-3 text-sm font-semibold tracking-wide
-          text-left bg-red-500"
+            className={
+              `p-2 text-md font-semibold tracking-wide
+              text-center ${colorStatus}`
+            }
             data-testid={ datatest }
           >
             {sale.status}
           </th>
-          <th className="p-3 text-sm font-semibold tracking-wide text-left">
+          <th className="p-2 text-md font-semibold tracking-wide text-end">
             <button
               type="button"
               className={ `bg-teal-500 hover:bg-teal-600 outline-none py-2 
@@ -42,8 +60,7 @@ function SaleInfoStatus({ sale }) {
             >
               PREPARAR PEDIDO
             </button>
-          </th>
-          <th className="p-3 text-sm font-semibold tracking-wide text-left">
+
             <button
               type="button"
               className={ `bg-teal-500 hover:bg-teal-600 outline-none py-2 

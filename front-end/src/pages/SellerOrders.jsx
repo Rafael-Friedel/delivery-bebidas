@@ -18,15 +18,15 @@ export default function SellerOrders() {
   }, []);
 
   return (
-    <>
+    <main className="bg-blue-50 w-full">
       <HeaderSeller />
-      <main className="w-full shadow-xl border-b-2">
+      <section className="flex bg-blue-50 p-6 flex-wrap mx-28 justify-center">
         {
           orders.length > 0 && (
             orders.map((sale) => <SellerSaleCard key={ sale.id } sale={ sale } />)
           )
         }
-      </main>
-    </>
+      </section>
+    </main>
   );
 }

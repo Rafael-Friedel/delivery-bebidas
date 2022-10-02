@@ -25,19 +25,28 @@ export default function CustomerProducts() {
   return (
     <>
       <HeaderClient />
-      {products.map((product) => (
-        <Products key={ product.id } product={ product } />
-      ))}
-      <button
-        type="button"
-        data-testid="customer_products__button-cart"
-        disabled={ buttonCart }
-        onClick={ () => navigate('/customer/checkout') }
-      >
-        <span data-testid="customer_products__checkout-bottom-value">
-          {totalCart}
-        </span>
-      </button>
+      <main>
+        <section className="flex justify-center bg-white-50 p-6 flex-wrap">
+          {products.map((product) => (
+            <Products key={ product.id } product={ product } />
+          ))}
+        </section>
+        <section className="flex justify-end p-3">
+          <button
+            type="button"
+            className="h-16 w-16 border-2 border-green-400
+          font-semibold rounded-md ml-4 px-4 py-2 outline-none w-40 h-12 text-green-600
+          hover:text-white hover:bg-green-600"
+            data-testid="customer_products__button-cart"
+            disabled={ buttonCart }
+            onClick={ () => navigate('/customer/checkout') }
+          >
+            <span data-testid="customer_products__checkout-bottom-value">
+              {`R$ ${totalCart}`}
+            </span>
+          </button>
+        </section>
+      </main>
     </>
   );
 }

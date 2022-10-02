@@ -19,7 +19,6 @@ function MyOrders() {
   }, [user.id]);
 
   const redirect = (id) => {
-    console.log(id);
     navigate(`/customer/orders/${id}`);
   };
 

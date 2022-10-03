@@ -13,13 +13,13 @@ function TheadDetailsProductsCheckout() {
         <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">
           Quantidade
         </th>
-        <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">
+        <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">
           Valor Unitário
         </th>
         <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">
           Sub-total
         </th>
-        <th className="w-24 p-3 text-sm font-semibold tracking-wide text-left">
+        <th className="w-32 p-3 text-sm font-semibold tracking-wide text-left">
           Remover Item
         </th>
       </tr>

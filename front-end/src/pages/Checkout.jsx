@@ -8,11 +8,13 @@ function Checkout() {
     <section>
       <HeaderClient />
       <section className="px-20 py-5">
-        <h2 className="py-5">Finalizar Pedido</h2>
+        <h2 className="py-5 text-lg font-semibold">Finalizar Pedido</h2>
         <TableDetailsProducts />
       </section>
       <section className="px-20 py-5">
-        <h2 className="px-5 py-2">Detalhes e Endereço para entrega</h2>
+        <h2 className="px-5 py-2 text-lg font-semibold">
+          Detalhes e Endereço para entrega
+        </h2>
         <FormDetailAdress />
       </section>
     </section>

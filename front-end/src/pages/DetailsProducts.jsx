@@ -16,15 +16,15 @@ function DetailsProducts() {
 
   useEffect(() => {
     getSale(id);
-  }, [id]);
+  });
 
   return (
-    <section>
+    <main>
       {sale.user ? (
         <>
           <HeaderClient name={ sale.user.name } />
           <section className="px-20 py-5">
-            <h2 className="py-5">Detalhes do Pedido:</h2>
+            <h2 className="py-5 text-lg font-semibold">Detalhes do Pedido:</h2>
             <TableDetailsSale sale={ sale } />
             <TableDetailsProducts sale={ sale } />
           </section>
@@ -32,7 +32,7 @@ function DetailsProducts() {
       ) : (
         <p>Loading...</p>
       )}
-    </section>
+    </main>
   );
 }
 

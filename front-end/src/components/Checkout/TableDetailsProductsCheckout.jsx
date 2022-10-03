@@ -25,7 +25,7 @@ function TableDetailsProductsCheckout() {
           {myProducts.map((p, index) => (
             <tr key={ index }>
               <td
-                className="p-3 text-sm text-gray-700 hover:bg-blue-400"
+                className="p-3 text-sm text-center text-gray-700 hover:bg-blue-400"
                 data-testid={ `${testId}-item-number-${index}` }
               >
                 {index + 1}
@@ -70,11 +70,11 @@ function TableDetailsProductsCheckout() {
           ))}
         </tbody>
       </table>
-      <section className="m-2">
+      <section className="p-2 m-2 flex justify-end">
         <p
-          className={ `h-16 w-16 border border-red-500 
-    font-semibold rounded-md ml-4 px-4 py-2 outline-none w-40 h-12 text-red-600 
-    hover:text-white hover:bg-red-600` }
+          className={ `h-16 w-16 border border-green-400 
+    font-semibold rounded-md ml-4 px-4 py-2 outline-none w-40 h-12 text-green-600 
+    hover:text-white hover:bg-green-600` }
           data-testid="customer_checkout__element-order-total-price"
         >
           {`Total: R$ ${myProducts

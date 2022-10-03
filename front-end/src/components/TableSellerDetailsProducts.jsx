@@ -23,7 +23,7 @@ function TableSellerDetailsProducts({ sale }) {
   }, [sale]);
 
   return (
-    <>
+    <main>
       <table className="w-full shadow-xl">
         <TheadDetailsProductsSeller />
         <tbody className="bg-gray-50 border-b-2 border-gray-200">
@@ -76,21 +76,19 @@ function TableSellerDetailsProducts({ sale }) {
           }
         </tbody>
       </table>
-      <section className="m-2">
-        <p
-          className={ `h-16 w-16 border border-red-500
-    font-semibold rounded-md ml-4 px-4 py-2 outline-none w-40 h-12 text-red-600
-    hover:text-white hover:bg-red-600` }
-          data-testid="seller_order_details__element-order-total-price"
-        >
-          {`Total: R$ ${(
-            totalPrice
-          )
-            .toFixed(2)
-            .replace('.', ',')}`}
-        </p>
-      </section>
-    </>
+      <p
+        className={ `absolute bottom-10 right-20 h-16 w-16 border border-green-500 
+          font-semibold rounded-md ml-4 px-4 py-2 outline-none w-40 h-12 text-green-600 
+          hover:text-white hover:bg-green-600` }
+        data-testid="seller_order_details__element-order-total-price"
+      >
+        {`Total: R$ ${(
+          totalPrice
+        )
+          .toFixed(2)
+          .replace('.', ',')}`}
+      </p>
+    </main>
 
   );
 }

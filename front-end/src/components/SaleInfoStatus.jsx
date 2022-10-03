@@ -29,7 +29,7 @@ function SaleInfoStatus({ sale }) {
       <thead className="bg-slate-300 border-b-2 border-gray-200">
         <tr>
           <th
-            className="p-2 text-md font-semibold tracking-wide text-center"
+            className="p-2 text-md tracking-wide text-center"
             data-testid="seller_order_details__element-order-details-label-order-id"
           >
             {`Pedido ${sale.id}`}

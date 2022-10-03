@@ -19,17 +19,18 @@ function SellerDetailSale() {
   });
 
   return (
-    <>
+    <main>
       <HeaderSeller />
       {
         sale.length > 0 && (
-          <>
+          <section className="px-20 py-5">
+            <h2 className="py-5 text-lg font-semibold">Detalhes do Pedido:</h2>
             <SaleInfoStatus sale={ sale[0] } />
             <TableSellerDetailsProducts sale={ sale } />
-          </>
+          </section>
         )
       }
-    </>
+    </main>
 
   );
 }

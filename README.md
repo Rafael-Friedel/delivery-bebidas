@@ -9,10 +9,10 @@
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [ ] subir o projeto pra nuvem e disponibilizar
-- [ ] trazer um gif da aplicação funcionando
-- [ ] implementar testes
-- [ ] criar dockerfile e dockercompose
+ [ ] subir o projeto pra nuvem e disponibilizar
+ [ ] trazer um gif da aplicação funcionando
+ [ ] implementar testes
+ [ ] criar dockerfile e dockercompose
 
 ### Tecnologias utilizadas
 

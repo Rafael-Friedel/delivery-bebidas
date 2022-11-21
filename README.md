@@ -9,10 +9,10 @@
 
 O projeto ainda está em desenvolvimento e as próximas atualizações serão voltadas nas seguintes tarefas:
 
-- [] subir o projeto pra nuvem e disponibilizar
-- [] trazer um gif da aplicação funcionando
-- [] implementar testes
-- [] criar dockerfile e dockercompose
+- [ ] subir o projeto pra nuvem e disponibilizar
+- [ ] trazer um gif da aplicação funcionando
+- [ ] implementar testes
+- [ ] criar dockerfile e dockercompose
 
 ### Tecnologias utilizadas
 
@@ -29,18 +29,4 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 ### Desafios
 
 Realizer um projeto Full-stack em grupo, em um curto periodo de tempo, com uma boa experiência ao usuário
-
-
-## 🚀 Rodando o  delivery de bebidas local
-
-Para rodar o NetMovies local, siga estas etapas:
-
-Linux e macOS:
-```
-git clone git@github.com:Rafael-Friedel/delivery-bebidas.git && cd delivery-bebidas
-```
-
-```
-npm i && npm run dev
-```
 

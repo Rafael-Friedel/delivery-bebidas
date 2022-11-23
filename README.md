@@ -59,16 +59,16 @@ Na sua máquina você deve ter:
 <summary><strong>Rodando o projeto na sua máquina</strong></summary><br />
 
  ```
- git clone git@github.com:Rafael-Friedel/trybe-futebol-clube.git
+ git clone git@github.com:Rafael-Friedel/delivery-bebidas.git
  ```
  
  
  ```
- cd trybe-futebol-clube && npm run compose:up
+ cd delivery-bebidas && npm run compose:up
  ```
 
  ```
- docker start app-frontend-1 app_backend db
+ docker start app_frontend app_backend db
  ```
  
  Para conferir a aplicação front-end basta acessar no seu navegador:
